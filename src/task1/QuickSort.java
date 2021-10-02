@@ -1,9 +1,9 @@
-package homework;
+package task1;
 
 import java.util.Arrays;
 import java.util.Random;
 
-public class QuickSort {
+class QuickSort {
     public static void main(String[] args) {
         Random rand = new Random();
 
