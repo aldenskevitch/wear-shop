@@ -60,4 +60,3 @@ public class Buyer {
         return selected;
     }
 }
-
