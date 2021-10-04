@@ -2,7 +2,7 @@ package homework.task2.shop;
 
 public class Department {
 
-    private static double proceeds;
+    private static double proceeds = 0;
 
     private String name;
     private Position position;

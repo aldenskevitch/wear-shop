@@ -14,7 +14,6 @@ public class ShoppingCart {
     private Wear[] wears;
 
     public void add(Wear... wears) {
-        this.wears = new Wear[wears.length];
         this.wears = wears;
         for (Wear wear : this.wears) {
             this.totalPrice += wear.getPrice();
