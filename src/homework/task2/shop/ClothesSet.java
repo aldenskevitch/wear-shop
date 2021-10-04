@@ -1,23 +1,34 @@
 package homework.task2.shop;
 
-import homework.task2.shop.catalog.legs.Pants;
-import homework.task2.shop.catalog.outerwear.Outerwear;
-import homework.task2.shop.catalog.shirt.Shirt;
+import homework.task2.shop.catalog.Wear;
 
 public class ClothesSet {
-    private Pants pants;
-    private Shirt shirt;
-    private Outerwear outerwear;
 
-    public void setPants(Pants pants) {
+    private Wear pants;
+    private Wear shirt;
+    private Wear outerwear;
+
+    public Wear getPants() {
+        return pants;
+    }
+
+    public void setPants(Wear pants) {
         this.pants = pants;
     }
 
-    public void setShirt(Shirt shirt) {
+    public Wear getShirt() {
+        return shirt;
+    }
+
+    public void setShirt(Wear shirt) {
         this.shirt = shirt;
     }
 
-    public void setOuterwear(Outerwear outerwear) {
+    public Wear getOuterwear() {
+        return outerwear;
+    }
+
+    public void setOuterwear(Wear outerwear) {
         this.outerwear = outerwear;
     }
 

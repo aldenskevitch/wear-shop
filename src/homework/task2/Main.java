@@ -1,33 +1,37 @@
 package homework.task2;
 
-import homework.task2.shop.ClothesSet;
-import homework.task2.shop.FittingRoom;
-import homework.task2.shop.ShoppingCart;
-import homework.task2.shop.catalog.legs.Pants;
-import homework.task2.shop.catalog.outerwear.Outerwear;
-import homework.task2.shop.catalog.parameters.FabricParameters;
-import homework.task2.shop.catalog.parameters.Sizes;
-import homework.task2.shop.catalog.shirt.Shirt;
+import homework.task2.shop.*;
+import homework.task2.shop.catalog.Wear;
+import homework.task2.shop.catalog.parameters.FabricParameter;
+import homework.task2.shop.catalog.parameters.Size;
 
 import java.util.Date;
 
 class Main {
     public static void main(String[] args) {
-        Date date = new Date();
-        Sizes sizes = new Sizes(Buyer.HEIGHT, Buyer.CHEST, Buyer.WAIST);
-        FabricParameters pantsFabric = new FabricParameters("gray", "jeans");
-        FabricParameters outerwearFabric = new FabricParameters("brown", "leather");
-        FabricParameters shirtFabric = new FabricParameters("gray", "cotton");
 
-        Pants pants = new Pants(sizes, pantsFabric, 100.00);
-        Outerwear outerwear = new Outerwear(sizes, outerwearFabric, 200.00);
-        Shirt shirt = new Shirt(sizes, shirtFabric, 50.00);
+        Date date = new Date();
+        Employee employee = new Employee("Ivan", "Ivanov");
+        Position position = new Position("cashier", employee);
+        Department department = new Department("Men's clothing", position);
+        Shop shop = new Shop("Clothing Store", "Independence Avenue 100", department);
+
+        Buyer buyer = new Buyer();
+        Size size = new Size(buyer);
+        FabricParameter pantsFabric = new FabricParameter("gray", "jeans");
+        FabricParameter outerwearFabric = new FabricParameter("brown", "leather");
+        FabricParameter shirtFabric = new FabricParameter("gray", "cotton");
+
+        Wear pants = new Wear("pants", size, pantsFabric, 100.00);
+        Wear outerwear = new Wear("outerwear", size, outerwearFabric, 200.00);
+        Wear shirt = new Wear("shirt", size, shirtFabric, 50.00);
 
         ClothesSet selectedClothes = new ClothesSet();
         FittingRoom fitting = new FittingRoom();
         ShoppingCart shoppingCart = new ShoppingCart();
 
         System.out.println("Current date and time: " + date);
+
         if (Buyer.selectPants(pants)) {
             selectedClothes.setPants(pants);
         }
@@ -38,13 +42,11 @@ class Main {
             selectedClothes.setShirt(shirt);
         }
         System.out.println(fitting.tryOn(pants));
-        System.out.println(fitting.tryOn(outerwear));
-        System.out.println(fitting.tryOn(shirt));
+        System.out.println(fitting.tryOn(pants, shirt));
+        System.out.println(fitting.tryOn(pants, shirt, outerwear));
 
-        shoppingCart.add(pants);
-        shoppingCart.add(outerwear);
-        shoppingCart.add(shirt);
-        shoppingCart.buy(selectedClothes);
-        shoppingCart.printCheck();
+        shoppingCart.add(selectedClothes);
+        shoppingCart.buy(selectedClothes, buyer);
+        shoppingCart.printCheck(shop);
     }
 }

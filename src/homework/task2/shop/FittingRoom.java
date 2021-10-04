@@ -1,22 +1,18 @@
 package homework.task2.shop;
 
-
-import homework.task2.shop.catalog.legs.Pants;
-import homework.task2.shop.catalog.outerwear.Outerwear;
-import homework.task2.shop.catalog.shirt.Shirt;
+import homework.task2.shop.catalog.Wear;
 
 public class FittingRoom {
 
-    public String tryOn(Pants pants) {
-        return "Trying on pants...";
+    public String tryOn(Wear wearType1) {
+        return "Trying on " + wearType1.getType() + "...";
     }
 
-    public String tryOn(Outerwear outerwear) {
-        return "Trying on outerwear...";
+    public String tryOn(Wear wearType1, Wear wearType2) {
+        return "Trying on " + wearType1.getType() + "with" + wearType2.getType();
     }
 
-    public String tryOn(Shirt shirt) {
-        return "Trying on shirt...";
+    public String tryOn(Wear wearType1, Wear wearType2, Wear wearType3) {
+        return "Trying on " + wearType1.getType() + "with" + wearType2.getType() + " and" + wearType3.getType();
     }
-
 }
