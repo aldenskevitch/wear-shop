@@ -2,17 +2,27 @@ package homework.task2.shop.catalog.parameters;
 
 public class FabricParameter {
 
-    private String[] fabric;
+    private String colorClothes;
+    private String materialClothes;
 
     public FabricParameter(String colorClothes, String materialClothes) {
-        fabric= new String[]{colorClothes, materialClothes};
+        this.colorClothes = colorClothes;
+        this.materialClothes = materialClothes;
     }
 
-    public String[] getFabric() {
-        return fabric;
+    public String getColorClothes() {
+        return colorClothes;
     }
 
-    public void setFabric(String[] fabric) {
-        this.fabric = fabric;
+    public void setColorClothes(String colorClothes) {
+        this.colorClothes = colorClothes;
+    }
+
+    public String getMaterialClothes() {
+        return materialClothes;
+    }
+
+    public void setMaterialClothes(String materialClothes) {
+        this.materialClothes = materialClothes;
     }
 }

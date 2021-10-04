@@ -5,9 +5,9 @@ public class Position {
     private String name;
     private Employee employee;
 
-    public Position(String name,Employee employee){
-        this.name=name;
-        this.employee=employee;
+    public Position(String name, Employee employee) {
+        this.name = name;
+        this.employee = employee;
     }
 
     public String getName() {

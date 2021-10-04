@@ -8,16 +8,12 @@ public class Size {
 
     public Size(Buyer buyer) {
         for (int i = 0; i < size.length; i++) {
-            switch (i) {
-                case 0:
-                    size[i] = buyer.getHeight();
-                    break;
-                case 1:
-                    size[i] = buyer.getChest();
-                    break;
-                case 2:
-                    size[i] = buyer.getWaist();
-                    break;
+            if (i == 0) {
+                size[i] = buyer.getHeight();
+            } else if (i == 1) {
+                size[i] = buyer.getChest();
+            } else {
+                size[i] = buyer.getWaist();
             }
         }
     }

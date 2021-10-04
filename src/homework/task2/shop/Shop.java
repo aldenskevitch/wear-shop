@@ -3,11 +3,10 @@ package homework.task2.shop;
 public class Shop {
 
     private String name;
-    private String address;
+    private Address address;
     private Department department;
-    private static double proceeds;
 
-    public Shop(String name, String address, Department department) {
+    public Shop(String name, Address address, Department department) {
         this.name = name;
         this.address = address;
         this.department = department;
@@ -21,11 +20,11 @@ public class Shop {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

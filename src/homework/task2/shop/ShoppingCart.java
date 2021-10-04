@@ -1,14 +1,17 @@
 package homework.task2.shop;
 
 import homework.task2.Buyer;
+import homework.task2.shop.catalog.Wear;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import static homework.task2.shop.Department.increaseProceeds;
+
 public class ShoppingCart {
 
     private double totalPrice;
-    private ClothesSet selectedClothes;
+    private Wear[] wears;
 
     public double getTotalPrice() {
         return totalPrice;
@@ -18,26 +21,20 @@ public class ShoppingCart {
         this.totalPrice = totalPrice;
     }
 
-    public ClothesSet getSelectedClothes() {
-        return selectedClothes;
+    public void add(Wear... wears) {
+        this.wears = new Wear[wears.length];
+        this.wears = wears;
+        for (Wear wear : this.wears) {
+            this.totalPrice += wear.getPrice();
+        }
     }
 
-    public void setSelectedClothes(ClothesSet selectedClothes) {
-        this.selectedClothes = selectedClothes;
-    }
-
-    public void add(ClothesSet selectedClothes) {
-        this.selectedClothes = selectedClothes;
-        totalPrice = totalPrice + selectedClothes.getTotalPrice();
-        System.out.println("Wear is added...");
-    }
-
-    public void buy(ClothesSet clothesSet, Buyer buyer) {
-        if (clothesSet.getTotalPrice() < buyer.getMoney()) {
+    public void buy(Buyer buyer) {
+        if (this.totalPrice < buyer.getMoney()) {
             System.out.println("Purchase made...");
-            buyer.setMoney(buyer.getMoney() - clothesSet.getTotalPrice());
+            buyer.setMoney(this.totalPrice);
             System.out.println("Balance at the moment " + new Date() + "....  " + buyer.getMoney());
-            Department.setProceeds(Department.getProceeds() + totalPrice);
+            increaseProceeds(totalPrice);
         } else {
             System.out.println("Not enough money...");
         }
@@ -49,17 +46,18 @@ public class ShoppingCart {
         System.out.println("Seller:" + shop.getDepartment().getPosition().getEmployee().getName() + shop.getDepartment().getPosition().getEmployee().getSurname());
         System.out.println("Date: " + LocalDateTime.now().toLocalDate());
         System.out.println("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-        System.out.println("1. ......" + selectedClothes.getPants().getPrice());
-        System.out.println("2. ......" + selectedClothes.getOuterwear().getPrice());
-        System.out.println("3. ......" + selectedClothes.getShirt().getPrice());
+        for (int i = 0; i < wears.length; i++) {
+            System.out.println((i + 1) + ". ......" + wears[i].getPrice());
+        }
         System.out.println("Total...." + totalPrice);
     }
+
     public void printCheck() {
         System.out.println("Date: " + LocalDateTime.now().toLocalDate());
         System.out.println("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-        System.out.println("1. ......" + selectedClothes.getPants().getPrice());
-        System.out.println("2. ......" + selectedClothes.getOuterwear().getPrice());
-        System.out.println("3. ......" + selectedClothes.getShirt().getPrice());
+        for (int i = 0; i < wears.length; i++) {
+            System.out.println((i + 1) + ". ......" + wears[i].getPrice());
+        }
         System.out.println("Total...." + totalPrice);
     }
 }

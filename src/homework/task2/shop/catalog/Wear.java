@@ -4,6 +4,7 @@ import homework.task2.shop.catalog.parameters.FabricParameter;
 import homework.task2.shop.catalog.parameters.Size;
 
 public class Wear {
+
     private String type;
     private Size size;
     private FabricParameter fabric;

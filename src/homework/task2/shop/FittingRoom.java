@@ -4,15 +4,15 @@ import homework.task2.shop.catalog.Wear;
 
 public class FittingRoom {
 
-    public String tryOn(Wear wearType1) {
-        return "Trying on " + wearType1.getType() + "...";
+    public String tryOn(Wear firstWear) {
+        return "Trying on " + firstWear.getType() + "...";
     }
 
-    public String tryOn(Wear wearType1, Wear wearType2) {
-        return "Trying on " + wearType1.getType() + "with" + wearType2.getType();
+    public String tryOn(Wear firstWear, Wear secondWear) {
+        return "Trying on " + firstWear.getType() + "with" + secondWear.getType();
     }
 
-    public String tryOn(Wear wearType1, Wear wearType2, Wear wearType3) {
-        return "Trying on " + wearType1.getType() + "with" + wearType2.getType() + " and" + wearType3.getType();
+    public String tryOn(Wear firstWear, Wear secondWear, Wear third) {
+        return "Trying on " + firstWear.getType() + " with " + secondWear.getType() + " and " + third.getType();
     }
 }
