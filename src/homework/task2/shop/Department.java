@@ -5,7 +5,7 @@ public class Department {
     private static double proceeds;
 
     private String name;
-    private final Position position;
+    private Position position;
 
     public Department(String name, Position position) {
         this.name = name;

@@ -4,9 +4,9 @@ import homework.task2.shop.catalog.Wear;
 
 public class Buyer {
 
-    private final int height;
-    private final int chest;
-    private final int waist;
+    private int height;
+    private int chest;
+    private int waist;
     private double money;
 
     Buyer(int height, int chestSize, int waistSize, double money) {
