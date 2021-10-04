@@ -12,6 +12,11 @@ public class Department {
         this.position = position;
     }
 
+    public static double increaseProceeds(double value) {
+        proceeds += value;
+        return proceeds;
+    }
+
     public String getName() {
         return name;
     }
@@ -22,10 +27,5 @@ public class Department {
 
     public Position getPosition() {
         return position;
-    }
-
-    public static double increaseProceeds(double value) {
-        proceeds += value;
-        return proceeds;
     }
 }

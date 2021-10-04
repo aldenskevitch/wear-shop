@@ -13,14 +13,6 @@ public class ShoppingCart {
     private double totalPrice;
     private Wear[] wears;
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public void add(Wear... wears) {
         this.wears = new Wear[wears.length];
         this.wears = wears;
@@ -59,5 +51,13 @@ public class ShoppingCart {
             System.out.println((i + 1) + ". ......" + wears[i].getPrice());
         }
         System.out.println("Total...." + totalPrice);
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
