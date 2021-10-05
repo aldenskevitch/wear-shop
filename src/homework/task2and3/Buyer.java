@@ -1,6 +1,6 @@
-package homework.task2;
+package homework.task2and3;
 
-import homework.task2.shop.catalog.Wear;
+import homework.task2and3.shop.catalog.Wear;
 
 public class Buyer {
 
@@ -17,7 +17,7 @@ public class Buyer {
     }
 
     public static boolean selectPants(Wear pants) {
-        boolean selected = pants.getPrice() < 150;
+        boolean selected = pants.getProductCost() < 150;
         if (selected) {
             System.out.println("Pants is selected");
         }
@@ -25,7 +25,7 @@ public class Buyer {
     }
 
     public static boolean selectOuterwear(Wear outerwear) {
-        boolean selected = outerwear.getPrice() < 300;
+        boolean selected = outerwear.getProductCost() < 300;
         if (selected) {
             System.out.println("Outerwear is selected");
         }
@@ -33,7 +33,7 @@ public class Buyer {
     }
 
     public static boolean selectShirt(Wear shirt) {
-        boolean selected = shirt.getPrice() < 100;
+        boolean selected = shirt.getProductCost() < 100;
         if (selected) {
             System.out.println("Shirt is selected");
         }

@@ -1,4 +1,4 @@
-package homework.task2.shop.catalog.parameters;
+package homework.task2and3.shop.catalog.parameters;
 
 public class FabricParameter {
 

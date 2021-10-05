@@ -1,6 +1,6 @@
-package homework.task2.shop.catalog.parameters;
+package homework.task2and3.shop.catalog.parameters;
 
-import homework.task2.Buyer;
+import homework.task2and3.Buyer;
 
 public class Size {
 

@@ -1,13 +1,15 @@
-package homework.task2.shop;
+package homework.task2and3.shop;
 
 public class Employee {
 
     private String name;
     private String surname;
+    private Position position;
 
-    public Employee(String name, String surname) {
+    public Employee(String name, String surname, Position position) {
         this.name = name;
         this.surname = surname;
+        this.position = position;
     }
 
     public String getName() {
