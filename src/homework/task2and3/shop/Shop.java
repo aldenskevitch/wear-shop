@@ -17,7 +17,7 @@ public class Shop extends PublicBuilding {
 
     @Override
     public String toString() {
-        return "It is class Shop";
+        return shopName + " have " + department + "department";
     }
 
     @Override

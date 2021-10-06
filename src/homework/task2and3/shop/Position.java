@@ -21,7 +21,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "It is class Position";
+        return "Position " + positionName + ", salary: " + salary;
     }
 
     @Override

@@ -5,6 +5,7 @@ import homework.task2and3.Cashier;
 import homework.task2and3.shop.catalog.Wear;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 
 import static homework.task2and3.shop.Department.increaseProceeds;
@@ -55,7 +56,7 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "Total price: " + totalPrice;
+        return "Total price: " + totalPrice + " for " + Arrays.toString(wears);
     }
 
     public double getTotalPrice() {

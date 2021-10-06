@@ -15,7 +15,7 @@ public class Building {
 
     @Override
     public String toString() {
-        return "It is class Building";
+        return "Building located: " + address;
     }
 
     @Override

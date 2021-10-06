@@ -27,7 +27,7 @@ public class Department {
 
     public Employee getEmployee(Position position) {
         for (int i = 0; i < this.employees.length; i++) {
-            if (this.employees[i].getPosition() == position)
+            if (this.employees[i].getPosition().equals(position))
                 return employees[i];
         }
         return null;
@@ -35,7 +35,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return nameDepartment;
+        return nameDepartment + "Employees: " + Arrays.toString(employees);
     }
 
     @Override

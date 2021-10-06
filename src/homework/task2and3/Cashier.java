@@ -15,6 +15,6 @@ public class Cashier extends Position {
 
     @Override
     public String toString() {
-        return "It is class Cashier";
+        return this.positionName;
     }
 }

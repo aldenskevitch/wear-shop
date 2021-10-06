@@ -16,7 +16,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return "It is abstract class Product";
+        return this.productName + this.productCost;
     }
 
     @Override

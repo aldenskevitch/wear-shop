@@ -23,7 +23,7 @@ public class Wear extends Product {
 
     @Override
     public String toString() {
-        return "It is class Wear";
+        return size.toString() + fabric.toString();
     }
 
     @Override

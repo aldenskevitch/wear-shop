@@ -17,7 +17,7 @@ public abstract class PublicBuilding extends Building {
 
     @Override
     public String toString() {
-        return "It is class PublicBuilding";
+        return "Public purpose: " + publicPurpose;
     }
 
     @Override
