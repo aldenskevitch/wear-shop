@@ -32,10 +32,10 @@ public class ShoppingCart {
         }
     }
 
-    public void printCheck(Shop shop) {
+    public void printCheck(Shop shop, Cashier cashier) {
         System.out.println("\n" + shop.getShopName());
         System.out.println(shop.getAddress().getStreet() + " " + shop.getAddress().getHouseNumber());
-        System.out.println("Seller:" + shop.getDepartment().getEmployee().getName() + shop.getDepartment().getEmployee().getSurname());
+        System.out.println("Seller:" + shop.getDepartment().getEmployee(cashier).getName() + shop.getDepartment().getEmployee(cashier).getSurname());
         System.out.println("Date: " + LocalDateTime.now().toLocalDate());
         System.out.println("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
         for (int i = 0; i < wears.length; i++) {
@@ -51,6 +51,11 @@ public class ShoppingCart {
             System.out.println((i + 1) + ". ......" + wears[i].getProductCost());
         }
         System.out.println("Total...." + totalPrice);
+    }
+
+    @Override
+    public String toString() {
+        return "Total price: " + totalPrice;
     }
 
     public double getTotalPrice() {

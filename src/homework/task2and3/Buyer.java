@@ -2,6 +2,8 @@ package homework.task2and3;
 
 import homework.task2and3.shop.catalog.Wear;
 
+import java.util.Objects;
+
 public class Buyer {
 
     private int height;
@@ -38,6 +40,24 @@ public class Buyer {
             System.out.println("Shirt is selected");
         }
         return selected;
+    }
+
+    @Override
+    public String toString() {
+        return "Buyer's money: " + money;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Buyer buyer = (Buyer) o;
+        return height == buyer.height && chest == buyer.chest && waist == buyer.waist && Double.compare(buyer.money, money) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(height, chest, waist, money);
     }
 
     public int getHeight() {

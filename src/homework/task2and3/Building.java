@@ -23,12 +23,12 @@ public class Building {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Building building = (Building) o;
-        return buildingType.equals(building.buildingType) && address.equals(building.address);
+        return address.equals(building.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(buildingType, address);
+        return Objects.hash(address);
     }
 
     public String getBuildingType() {

@@ -46,10 +46,10 @@ class Main {
 
         shoppingCart.add(pants, outerwear, shirt);
         shoppingCart.buy(buyer);
-        shoppingCart.printCheck(shop);
+        shoppingCart.printCheck(shop, cashier);
 
-        ControlClass.controlBuilding(shop);
-        ControlClass.controlPosition(cashier);
-        ControlClass.controlProduct(pants);
+        ControlClass.changeAddress(shop, "Mayakovskogo", "25");
+        ControlClass.salaryChange(cashier, 200);
+        ControlClass.setDiscount(pants, 20);
     }
 }

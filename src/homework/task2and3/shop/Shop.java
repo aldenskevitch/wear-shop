@@ -31,12 +31,12 @@ public class Shop extends PublicBuilding {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Shop shop = (Shop) o;
-        return shopName.equals(shop.shopName) && department.equals(shop.department);
+        return shopName.equals(shop.shopName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), shopName, department);
+        return Objects.hash(super.hashCode(), shopName);
     }
 
     public String getShopName() {

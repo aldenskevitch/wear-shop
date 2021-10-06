@@ -1,5 +1,6 @@
 package homework.task2and3.shop;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Department {
@@ -7,11 +8,16 @@ public class Department {
     private static double proceeds = 0;
 
     private String nameDepartment;
-    private Employee employee;
+    private Employee[] employees;
 
-    public Department(String nameDepartment, Employee employee) {
+    public Department(String nameDepartment, Employee... employees) {
         this.nameDepartment = nameDepartment;
-        this.employee = employee;
+        this.employees = employees;
+    }
+
+    public void addEmployee(Employee employee) {
+        this.employees = Arrays.copyOf(this.employees, this.employees.length + 1);
+        this.employees[this.employees.length - 1] = employee;
     }
 
     public static double increaseProceeds(double value) {
@@ -19,17 +25,30 @@ public class Department {
         return proceeds;
     }
 
+    public Employee getEmployee(Position position) {
+        for (int i = 0; i < this.employees.length; i++) {
+            if (this.employees[i].getPosition() == position)
+                return employees[i];
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return nameDepartment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return nameDepartment.equals(that.nameDepartment) && employee.equals(that.employee);
+        return nameDepartment.equals(that.nameDepartment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameDepartment, employee);
+        return Objects.hash(nameDepartment);
     }
 
     public static double getProceeds() {
@@ -48,11 +67,11 @@ public class Department {
         this.nameDepartment = nameDepartment;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Employee[] getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployees(Employee... employees) {
+        this.employees = employees;
     }
 }

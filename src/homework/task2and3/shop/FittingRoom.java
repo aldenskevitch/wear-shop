@@ -15,4 +15,9 @@ public class FittingRoom {
     public String tryOn(Wear firstWear, Wear secondWear, Wear third) {
         return "Trying on " + firstWear.getProductName() + " with " + secondWear.getProductName() + " and " + third.getProductName();
     }
+
+    @Override
+    public String toString() {
+        return "Room for truing on";
+    }
 }
