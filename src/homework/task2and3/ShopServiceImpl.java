@@ -25,4 +25,9 @@ public class ShopServiceImpl implements ShopService {
     public void tryOnWear(TryableOn tryableOn) {
         tryableOn.tryOn();
     }
+
+    @Override
+    public void getConsultation(Consultantable consultantable) {
+        consultantable.advise();
+    }
 }

@@ -1,11 +1,10 @@
 package homework.task2and3;
 
 import homework.task2and3.shop.Address;
-import homework.task2and3.shop.Workable;
 
 import java.util.Objects;
 
-public abstract class PublicBuilding extends Building implements Workable {
+public abstract class PublicBuilding extends Building {
 
     protected String publicPurpose;
 

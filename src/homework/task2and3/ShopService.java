@@ -13,4 +13,6 @@ public interface ShopService {
     void goToCashier(Sellable sellable);
 
     void tryOnWear(TryableOn TryableOn);
+
+    void getConsultation(Consultantable consultantable);
 }

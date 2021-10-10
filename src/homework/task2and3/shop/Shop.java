@@ -4,7 +4,7 @@ import homework.task2and3.PublicBuilding;
 
 import java.util.Objects;
 
-public class Shop extends PublicBuilding {
+public class Shop extends PublicBuilding implements Workable {
 
     private String shopName;
     private Department department;

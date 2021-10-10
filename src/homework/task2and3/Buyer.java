@@ -50,6 +50,16 @@ public class Buyer implements WearSelectable, Buyable {
     }
 
     @Override
+    public void comeToShop(Buyer buyer) {
+        System.out.println("You are in shop.");
+    }
+
+    @Override
+    public void leaveShop(Buyer buyer) {
+        System.out.println("You leave shop.");
+    }
+
+    @Override
     public void buy(ShoppingCart shoppingCart) {
         if (shoppingCart.getTotalPrice() < this.getMoney()) {
             System.out.println("Purchase made...");
