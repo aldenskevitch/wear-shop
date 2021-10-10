@@ -1,10 +1,11 @@
 package homework.task2and3;
 
 import homework.task2and3.shop.Address;
+import homework.task2and3.shop.Workable;
 
 import java.util.Objects;
 
-public abstract class PublicBuilding extends Building {
+public abstract class PublicBuilding extends Building implements Workable {
 
     protected String publicPurpose;
 
@@ -12,8 +13,6 @@ public abstract class PublicBuilding extends Building {
         super(address);
         this.publicPurpose = publicPurpose;
     }
-
-    public abstract void getStarted();
 
     @Override
     public String toString() {

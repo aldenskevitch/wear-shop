@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class Building {
 
-    protected String buildingType;
-    protected Address address;
+    private String buildingType;
+    private Address address;
 
     public Building(Address address) {
         this.address = address;

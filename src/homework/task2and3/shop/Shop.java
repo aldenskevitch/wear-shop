@@ -16,13 +16,18 @@ public class Shop extends PublicBuilding {
     }
 
     @Override
-    public String toString() {
-        return shopName + " have " + department + "department";
+    public void startWork() {
+        System.out.println("Shop is opened!");
     }
 
     @Override
-    public void getStarted() {
-        System.out.println("Shop is opened");
+    public void finishWork() {
+        System.out.println("Shop is close.");
+    }
+
+    @Override
+    public String toString() {
+        return shopName + " have " + department + "department";
     }
 
     @Override
