@@ -9,4 +9,5 @@ public interface WearSelectable {
     boolean selectOuterwear(Wear outerwear);
 
     boolean selectShirt(Wear shirt);
+
 }

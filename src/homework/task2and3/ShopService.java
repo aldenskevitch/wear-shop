@@ -15,4 +15,5 @@ public interface ShopService {
     void tryOnWear(TryableOn TryableOn);
 
     void getConsultation(Consultantable consultantable);
+
 }
