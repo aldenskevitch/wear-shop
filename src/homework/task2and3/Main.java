@@ -1,7 +1,9 @@
 package homework.task2and3;
 
 import homework.task2and3.shop.*;
+import homework.task2and3.shop.catalog.Glasses;
 import homework.task2and3.shop.catalog.MenWear;
+import homework.task2and3.shop.catalog.Wear;
 import homework.task2and3.shop.catalog.parameters.FabricParameter;
 import homework.task2and3.shop.catalog.parameters.Size;
 
@@ -12,6 +14,7 @@ class Main {
     public static void main(String[] args) {
         Date date = new Date();
 
+        Consultant consultant = new Consultant(800.00);
         Cashier cashier = new Cashier(1000.00);
         Employee employee = new Employee("Ivan", "Ivanov", cashier);
         Department department = new Department("Sport wear", employee);
@@ -24,28 +27,40 @@ class Main {
         FabricParameter outerwearFabric = new FabricParameter("brown", "leather");
         FabricParameter shirtFabric = new FabricParameter("gray", "cotton");
 
-        MenWear pants = new MenWear("pants", 100.00, size, pantsFabric);
-        MenWear outerwear = new MenWear("outerwear", 200.00, size, outerwearFabric);
-        MenWear shirt = new MenWear("shirt", 50.00, size, shirtFabric);
+        Wear pants = new MenWear("pants", 100.00, size, pantsFabric);
+        Wear outerwear = new MenWear("outerwear", 200.00, size, outerwearFabric);
+        Wear shirt = new MenWear("shirt", 50.00, size, shirtFabric);
+        Glasses glasses = new Glasses("SunGlasses", 50.00);
 
         FittingRoom fitting = new FittingRoom();
         ShoppingCart shoppingCart = new ShoppingCart();
 
         System.out.println("Current date and time: " + date);
 
-        if (Buyer.selectPants(pants)) {
+        if (buyer.selectPants(pants)) {
             System.out.println(fitting.tryOn(pants));
         }
-        if (Buyer.selectOuterwear(outerwear)) {
+        if (buyer.selectOuterwear(outerwear)) {
             System.out.println(fitting.tryOn(outerwear));
         }
-        if (Buyer.selectShirt(shirt)) {
+        if (buyer.selectShirt(shirt)) {
             System.out.println(fitting.tryOn(shirt));
         }
         System.out.println(fitting.tryOn(pants, shirt, outerwear));
 
         shoppingCart.add(pants, outerwear, shirt);
-        shoppingCart.buy(buyer);
+
+        ShopService shopService = new ShopServiceImpl();
+        shopService.startWork(shop);
+        shopService.getConsultation(consultant);
+        shopService.tryOnWear(glasses);
+        shopService.tryOnWear(pants);
+        shopService.tryOnWear(outerwear);
+        shopService.tryOnWear(shirt);
+        shopService.goToCashier(shoppingCart);
+        shopService.finishWork(shop);
+
+        buyer.buy(shoppingCart);
         shoppingCart.printCheck(shop, cashier);
 
         ControlClass.changeAddress(shop, "Mayakovskogo", "25");

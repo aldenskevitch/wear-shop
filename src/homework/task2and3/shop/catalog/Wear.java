@@ -5,7 +5,7 @@ import homework.task2and3.shop.catalog.parameters.Size;
 
 import java.util.Objects;
 
-public class Wear extends Product {
+public class Wear extends Product implements TryableOn {
 
     private Size size;
     private FabricParameter fabric;
@@ -19,6 +19,11 @@ public class Wear extends Product {
     @Override
     public void doPrepareForSale() {
         System.out.println("The wear is ready for sale");
+    }
+
+    @Override
+    public void tryOn() {
+        System.out.println("Trying on " + this.getProductName() + "...");
     }
 
     @Override

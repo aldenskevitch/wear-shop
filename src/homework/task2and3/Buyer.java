@@ -1,10 +1,14 @@
 package homework.task2and3;
 
+import homework.task2and3.shop.ShoppingCart;
 import homework.task2and3.shop.catalog.Wear;
 
+import java.util.Date;
 import java.util.Objects;
 
-public class Buyer {
+import static homework.task2and3.shop.Department.increaseProceeds;
+
+public class Buyer implements WearSelectable, Buyable {
 
     private int height;
     private int chest;
@@ -18,7 +22,8 @@ public class Buyer {
         this.money = money;
     }
 
-    public static boolean selectPants(Wear pants) {
+    @Override
+    public boolean selectPants(Wear pants) {
         boolean selected = pants.getProductCost() < 150;
         if (selected) {
             System.out.println("Pants is selected");
@@ -26,7 +31,8 @@ public class Buyer {
         return selected;
     }
 
-    public static boolean selectOuterwear(Wear outerwear) {
+    @Override
+    public boolean selectOuterwear(Wear outerwear) {
         boolean selected = outerwear.getProductCost() < 300;
         if (selected) {
             System.out.println("Outerwear is selected");
@@ -34,12 +40,35 @@ public class Buyer {
         return selected;
     }
 
-    public static boolean selectShirt(Wear shirt) {
+    @Override
+    public boolean selectShirt(Wear shirt) {
         boolean selected = shirt.getProductCost() < 100;
         if (selected) {
             System.out.println("Shirt is selected");
         }
         return selected;
+    }
+
+    @Override
+    public void comeToShop(Buyer buyer) {
+        System.out.println("You are in shop.");
+    }
+
+    @Override
+    public void leaveShop(Buyer buyer) {
+        System.out.println("You leave shop.");
+    }
+
+    @Override
+    public void buy(ShoppingCart shoppingCart) {
+        if (shoppingCart.getTotalPrice() < this.getMoney()) {
+            System.out.println("Purchase made...");
+            this.setMoney(-shoppingCart.getTotalPrice());
+            System.out.println("Balance at the moment " + new Date() + "....  " + this.getMoney());
+            increaseProceeds(shoppingCart.getTotalPrice());
+        } else {
+            System.out.println("Not enough money...");
+        }
     }
 
     @Override

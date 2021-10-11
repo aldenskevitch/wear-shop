@@ -13,8 +13,6 @@ public abstract class PublicBuilding extends Building {
         this.publicPurpose = publicPurpose;
     }
 
-    public abstract void getStarted();
-
     @Override
     public String toString() {
         return "Public purpose: " + publicPurpose;
