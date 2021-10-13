@@ -9,7 +9,6 @@ import homework.task2345.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
@@ -23,7 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         Date date = new Date();
 
         Consultant consultant = new Consultant(800.00);
@@ -32,12 +30,11 @@ public class Main {
         Department department = new Department("Sport wear", employee);
         Address shopAddress = new Address("Independence Avenue", "100");
         Shop shop = new Shop(shopAddress, "Trade object", "Clothes for all family", department);
-        ShopInfo shopInfo = new ShopInfo();
 
-        try (FileWriter writer = new FileWriter(shopInfo.getFilePath())) {
-            writer.write(shop.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (ShopInfo shopInfo = new ShopInfo()) {
+            shopInfo.writeToFile(shopInfo.getFilePath());
+        } catch (Exception e) {
+            LOGGER.debug(e.getMessage());
         }
 
         Buyer buyer = new Buyer(170, 80, 50, 600.00);

@@ -71,8 +71,8 @@ public class Buyer implements WearSelectable, Buyable {
     }
 
     @Override
-    public void buy(ShoppingCart shoppingCart) throws BuyerDataException, BuyerLocatedException {
-        if (this.isToShop == false) {
+    public void buy(ShoppingCart shoppingCart) {
+        if (!this.isToShop) {
             throw new BuyerLocatedException("Buyer is not in shop");
         }
         if (shoppingCart.getTotalPrice() > this.getMoney()) {

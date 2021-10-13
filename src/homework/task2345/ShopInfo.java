@@ -1,12 +1,21 @@
 package homework.task2345;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Objects;
 
-public class ShopInfo {
+public class ShopInfo implements AutoCloseable {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     private String filePath = "ShopInfo.txt";
 
-    public ShopInfo() {
+    public void writeToFile(String filePath) throws IOException {
+        File file = new File(filePath);
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
     }
 
     @Override
@@ -35,5 +44,10 @@ public class ShopInfo {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    @Override
+    public void close() throws Exception {
+        LOGGER.debug("File is close");
     }
 }
