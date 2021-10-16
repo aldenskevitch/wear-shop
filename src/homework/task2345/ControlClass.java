@@ -15,10 +15,10 @@ public class ControlClass {
     }
 
     public static void changeAddress(Building building, String newStreet, String newHouseNumber) {
-        LOGGER.debug(building.getClass().getSimpleName() + " object address " + building.getAddress().toString() + " has been changed to: ");
-        building.getAddress().setStreet(newStreet);
-        building.getAddress().setHouseNumber(newHouseNumber);
-        LOGGER.debug(building.getAddress().toString());
+        LOGGER.debug(building.getClass().getSimpleName() + " object address " + building.getAddresses().toString() + " has been changed to: ");
+        building.getAddresses().setStreet(newStreet);
+        building.getAddresses().setHouseNumber(newHouseNumber);
+        LOGGER.debug(building.getAddresses().toString());
     }
 
     public static void salaryChange(Position position, double salary) {

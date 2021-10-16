@@ -9,8 +9,9 @@ import homework.task2345.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
 
@@ -26,8 +27,14 @@ public class Main {
 
         Consultant consultant = new Consultant(800.00);
         Cashier cashier = new Cashier(1000.00);
-        Employee employee = new Employee("Ivan", "Ivanov", cashier);
-        Department department = new Department("Sport wear", employee);
+
+        Employee employee1 = new Employee("Ivan", "Ivanov", cashier);
+        Employee employee2 = new Employee("Petya", "Petrov", consultant);
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employee1);
+        employees.add(employee2);
+
+        Department department = new Department("Sport wear", employees);
         Address shopAddress = new Address("Independence Avenue", "100");
         Shop shop = new Shop(shopAddress, "Trade object", "Clothes for all family", department);
 
@@ -52,7 +59,6 @@ public class Main {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         LOGGER.debug("Current date and time: " + date);
-
         try {
             buyer.comeToShop(shop);
         } catch (ShopTimeException e) {
@@ -72,7 +78,8 @@ public class Main {
         }
         LOGGER.debug(fitting.tryOn(pants, shirt, outerwear));
 
-        shoppingCart.add(pants, outerwear, shirt);
+        shoppingCart.addWears(pants, outerwear, shirt);
+        shoppingCart.calculatedTotalPrice();
 
         ShopService shopService = new ShopServiceImpl();
         shopService.startWork(shop);
