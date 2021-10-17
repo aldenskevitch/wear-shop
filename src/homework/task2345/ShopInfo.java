@@ -11,6 +11,7 @@ import java.util.Objects;
 public class ShopInfo implements AutoCloseable {
 
     private static final Logger LOGGER = LogManager.getLogger();
+
     private final String FILEPATH = "ShopInfo.txt";
 
     public void writeToFile(String filePath) throws IOException {

@@ -8,7 +8,7 @@ public abstract class PublicBuilding extends Building {
 
     protected String publicPurpose;
 
-    public PublicBuilding(Address address, String publicPurpose) {
+    public PublicBuilding(Address<?> address, String publicPurpose) {
         super(address);
         this.publicPurpose = publicPurpose;
     }

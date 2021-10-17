@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Wear extends Product implements TryableOn {
 
     private static final Logger LOGGER = LogManager.getLogger();
+
     private Size size;
     private FabricParameter fabric;
 

@@ -25,7 +25,6 @@ public class Main {
 
         Consultant consultant = new Consultant(800.00);
         Cashier cashier = new Cashier(1000.00);
-
         Employee employee1 = new Employee("Ivan", "Ivanov", cashier);
         Employee employee2 = new Employee("Petya", "Petrov", consultant);
         List<Employee> employees = new ArrayList<>();
@@ -33,8 +32,7 @@ public class Main {
         employees.add(employee2);
 
         Department department = new Department("Sport wear", employees);
-        Address<String> shopAddress;
-        shopAddress = new Address("Independence Avenue", "100");
+        Address<String> shopAddress = new Address<>("Independence Avenue", "100");
         Shop shop = new Shop(shopAddress, "Trade object", "Clothes for all family", department);
 
         try (ShopInfo shopInfo = new ShopInfo()) {
@@ -60,7 +58,7 @@ public class Main {
         Glasses glasses = new Glasses("SunGlasses", 50.00);
 
         FittingRoom fitting = new FittingRoom();
-        ShoppingCart shoppingCart = new ShoppingCart();
+        ShoppingCart<Position> shoppingCart = new ShoppingCart<>();
 
         LOGGER.debug("Current date and time: " + date);
         try {
@@ -108,7 +106,8 @@ public class Main {
         }
         shoppingCart.printCheck(shop, cashier);
 
-        ControlClass.changeAddress(shop, "Mayakovskogo", "25");
+        Address<Integer> shopAddress2 = new Address<>("Mayakovskogo", 25);
+        ControlClass.changeAddress(shop, shopAddress2);
         ControlClass.salaryChange(cashier, 200);
         ControlClass.setDiscount(pants, 20);
 

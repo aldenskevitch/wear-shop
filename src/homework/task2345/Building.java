@@ -9,14 +9,9 @@ import java.util.Objects;
 public class Building {
 
     private String buildingType;
-    private Address addresses;
+    private Address<?> addresses;
 
-    public Building(Address address) {
-        this.addresses = address;
-    }
-
-    public void addBuilding(String buildingType, Address address) {
-        this.buildingType = buildingType;
+    public Building(Address<?> address) {
         this.addresses = address;
     }
 
@@ -46,11 +41,11 @@ public class Building {
         this.buildingType = buildingType;
     }
 
-    public Address getAddresses() {
+    public Address<?> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Address addresses) {
+    public void setAddresses(Address<?> addresses) {
         this.addresses = addresses;
     }
 }

@@ -1,12 +1,13 @@
 package homework.task2345;
 
+import homework.task2345.shop.Address;
 import homework.task2345.shop.Position;
 import homework.task2345.shop.catalog.Product;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class ControlClass {
+public class ControlClass<E> {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -14,10 +15,9 @@ public class ControlClass {
         product.setProductCost(product.getProductCost() / 100 * (100 - percent));
     }
 
-    public static void changeAddress(Building building, String newStreet, String newHouseNumber) {
+    public static void changeAddress(Building building, Address<?> address) {
         LOGGER.debug(building.getClass().getSimpleName() + " object address " + building.getAddresses().toString() + " has been changed to: ");
-        building.getAddresses().setStreet(newStreet);
-        building.getAddresses().setHouseNumber(newHouseNumber);
+        building.setAddresses(address);
         LOGGER.debug(building.getAddresses().toString());
     }
 
