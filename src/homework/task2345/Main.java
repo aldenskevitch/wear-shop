@@ -33,7 +33,8 @@ public class Main {
         employees.add(employee2);
 
         Department department = new Department("Sport wear", employees);
-        Address shopAddress = new Address("Independence Avenue", "100");
+        Address<String> shopAddress;
+        shopAddress = new Address("Independence Avenue", "100");
         Shop shop = new Shop(shopAddress, "Trade object", "Clothes for all family", department);
 
         try (ShopInfo shopInfo = new ShopInfo()) {
