@@ -16,13 +16,11 @@ public class Buyer implements WearSelectable, Buyable {
 
     private double money;
     private boolean isToShop;
-    private Map<String, Integer> sizes = new HashMap<>();
-    private List<Wear> wardrobe = new ArrayList<>();
+    private Map<String, Integer> sizes;
+    private List<Wear> wardrobe;
 
-    public Buyer(int height, int chestSize, int waistSize, double money) {
-        this.sizes.put("height", height);
-        this.sizes.put("chest", chestSize);
-        this.sizes.put("waist", waistSize);
+    public Buyer(Map<String, Integer> sizes, double money) {
+        this.sizes = sizes;
         this.money = money;
     }
 
@@ -42,7 +40,6 @@ public class Buyer implements WearSelectable, Buyable {
         if (selected) {
             LOGGER.debug("Outerwear is selected");
             this.wardrobe.add(outerwear);
-
         }
         return selected;
     }

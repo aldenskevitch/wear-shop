@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart<E extends Position> implements Sellable {
@@ -15,10 +14,10 @@ public class ShoppingCart<E extends Position> implements Sellable {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private double totalPrice;
-    private List<Double> prices = new ArrayList<>();
-    private Basket<Wear> wearBasket = new Basket<>();
+    private List<Double> prices;
+    private Basket<Wear> wearBasket;
 
-    public void addWears(Wear... wears) {
+    public void addWears(List<Wear> wears) {
         wearBasket.setProduct(wears);
         for (Wear wear : wearBasket.getProduct()) {
             this.prices.add(wear.getProductCost());

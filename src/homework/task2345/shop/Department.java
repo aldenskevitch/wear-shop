@@ -1,6 +1,5 @@
 package homework.task2345.shop;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,8 +8,8 @@ public class Department {
     private static double proceeds = 0;
 
     private String nameDepartment;
-    private List<Employee> employees = new ArrayList<>();
-    private List<Position> positions = new ArrayList<>();
+    private List<Employee> employees;
+    private List<Position> positions;
 
     public Department(String nameDepartment, List<Employee> employees) {
         this.nameDepartment = nameDepartment;

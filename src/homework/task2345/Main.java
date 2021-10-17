@@ -9,9 +9,7 @@ import homework.task2345.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -39,13 +37,18 @@ public class Main {
         Shop shop = new Shop(shopAddress, "Trade object", "Clothes for all family", department);
 
         try (ShopInfo shopInfo = new ShopInfo()) {
-            shopInfo.writeToFile(shopInfo.getFilePath());
+            shopInfo.writeToFile(shopInfo.getFILEPATH());
         } catch (Exception e) {
             LOGGER.debug(e.getMessage());
         }
 
-        Buyer buyer = new Buyer(170, 80, 50, 600.00);
+        Map<String, Integer> sizes = new HashMap<>();
+        sizes.put("height", 170);
+        sizes.put("chest", 80);
+        sizes.put("waist", 50);
+        Buyer buyer = new Buyer(sizes, 600.00);
         Size size = new Size(buyer);
+
         FabricParameter pantsFabric = new FabricParameter("gray", "jeans");
         FabricParameter outerwearFabric = new FabricParameter("brown", "leather");
         FabricParameter shirtFabric = new FabricParameter("gray", "cotton");
@@ -67,18 +70,22 @@ public class Main {
             LOGGER.debug("Operation is completed");
         }
 
+        List<Wear> wears = new ArrayList<>();
         if (buyer.selectPants(pants)) {
             LOGGER.debug(fitting.tryOn(pants));
+            wears.add(pants);
         }
         if (buyer.selectOuterwear(outerwear)) {
             LOGGER.debug(fitting.tryOn(outerwear));
+            wears.add(outerwear);
         }
         if (buyer.selectShirt(shirt)) {
             LOGGER.debug(fitting.tryOn(shirt));
+            wears.add(shirt);
         }
         LOGGER.debug(fitting.tryOn(pants, shirt, outerwear));
 
-        shoppingCart.addWears(pants, outerwear, shirt);
+        shoppingCart.addWears(wears);
         shoppingCart.calculatedTotalPrice();
 
         ShopService shopService = new ShopServiceImpl();

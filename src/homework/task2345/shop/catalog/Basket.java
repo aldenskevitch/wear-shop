@@ -1,16 +1,17 @@
 package homework.task2345.shop.catalog;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class Basket<E extends Product> {
 
-    private E[] product;
+    private List<E> product;
 
-    public E[] getProduct() {
+    public List<E> getProduct() {
         return product;
     }
 
-    public void setProduct(E[] product) {
+    public void setProduct(List<E> product) {
         this.product = product;
     }
 
@@ -19,11 +20,11 @@ public class Basket<E extends Product> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Basket<?> basket = (Basket<?>) o;
-        return Arrays.equals(product, basket.product);
+        return Objects.equals(product, basket.product);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(product);
+        return Objects.hash(product);
     }
 }
