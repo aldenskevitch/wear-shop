@@ -2,20 +2,22 @@ package homework.task2345;
 
 import homework.task2345.shop.Address;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Building {
 
     private String buildingType;
-    private Address address;
+    private Address<?> addresses;
 
-    public Building(Address address) {
-        this.address = address;
+    public Building(Address<?> address) {
+        this.addresses = address;
     }
 
     @Override
     public String toString() {
-        return "Building located: " + address;
+        return "Buildings located: " + addresses;
     }
 
     @Override
@@ -23,12 +25,12 @@ public class Building {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Building building = (Building) o;
-        return address.equals(building.address);
+        return Objects.equals(buildingType, building.buildingType) && Objects.equals(addresses, building.addresses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(address);
+        return Objects.hash(buildingType, addresses);
     }
 
     public String getBuildingType() {
@@ -39,11 +41,11 @@ public class Building {
         this.buildingType = buildingType;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address<?> getAddresses() {
+        return addresses;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddresses(Address<?> addresses) {
+        this.addresses = addresses;
     }
 }

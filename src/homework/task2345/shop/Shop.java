@@ -14,7 +14,7 @@ public class Shop extends PublicBuilding implements Workable {
     private Department department;
     private boolean isWorking;
 
-    public Shop(Address address, String publicPurpose, String shopName, Department department) {
+    public Shop(Address<?> address, String publicPurpose, String shopName, Department department) {
         super(address, publicPurpose);
         this.shopName = shopName;
         this.department = department;

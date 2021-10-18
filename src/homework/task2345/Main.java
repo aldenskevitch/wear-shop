@@ -9,8 +9,7 @@ import homework.task2345.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.util.Date;
+import java.util.*;
 
 public class Main {
 
@@ -26,19 +25,29 @@ public class Main {
 
         Consultant consultant = new Consultant(800.00);
         Cashier cashier = new Cashier(1000.00);
-        Employee employee = new Employee("Ivan", "Ivanov", cashier);
-        Department department = new Department("Sport wear", employee);
-        Address shopAddress = new Address("Independence Avenue", "100");
+        Employee employee1 = new Employee("Ivan", "Ivanov", cashier);
+        Employee employee2 = new Employee("Petya", "Petrov", consultant);
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employee1);
+        employees.add(employee2);
+
+        Department department = new Department("Sport wear", employees);
+        Address<String> shopAddress = new Address<>("Independence Avenue", "100");
         Shop shop = new Shop(shopAddress, "Trade object", "Clothes for all family", department);
 
         try (ShopInfo shopInfo = new ShopInfo()) {
-            shopInfo.writeToFile(shopInfo.getFilePath());
+            shopInfo.writeToFile(shopInfo.getFILEPATH());
         } catch (Exception e) {
             LOGGER.debug(e.getMessage());
         }
 
-        Buyer buyer = new Buyer(170, 80, 50, 600.00);
+        Map<String, Integer> sizes = new HashMap<>();
+        sizes.put("height", 170);
+        sizes.put("chest", 80);
+        sizes.put("waist", 50);
+        Buyer buyer = new Buyer(sizes, 600.00);
         Size size = new Size(buyer);
+
         FabricParameter pantsFabric = new FabricParameter("gray", "jeans");
         FabricParameter outerwearFabric = new FabricParameter("brown", "leather");
         FabricParameter shirtFabric = new FabricParameter("gray", "cotton");
@@ -49,10 +58,9 @@ public class Main {
         Glasses glasses = new Glasses("SunGlasses", 50.00);
 
         FittingRoom fitting = new FittingRoom();
-        ShoppingCart shoppingCart = new ShoppingCart();
+        ShoppingCart<Position> shoppingCart = new ShoppingCart<>();
 
         LOGGER.debug("Current date and time: " + date);
-
         try {
             buyer.comeToShop(shop);
         } catch (ShopTimeException e) {
@@ -61,18 +69,23 @@ public class Main {
             LOGGER.debug("Operation is completed");
         }
 
+        List<Wear> wears = new ArrayList<>();
         if (buyer.selectPants(pants)) {
             LOGGER.debug(fitting.tryOn(pants));
+            wears.add(pants);
         }
         if (buyer.selectOuterwear(outerwear)) {
             LOGGER.debug(fitting.tryOn(outerwear));
+            wears.add(outerwear);
         }
         if (buyer.selectShirt(shirt)) {
             LOGGER.debug(fitting.tryOn(shirt));
+            wears.add(shirt);
         }
         LOGGER.debug(fitting.tryOn(pants, shirt, outerwear));
 
-        shoppingCart.add(pants, outerwear, shirt);
+        shoppingCart.addWears(wears);
+        shoppingCart.calculatedTotalPrice();
 
         ShopService shopService = new ShopServiceImpl();
         shopService.startWork(shop);
@@ -93,7 +106,8 @@ public class Main {
         }
         shoppingCart.printCheck(shop, cashier);
 
-        ControlClass.changeAddress(shop, "Mayakovskogo", "25");
+        Address<Integer> shopAddress2 = new Address<>("Mayakovskogo", 25);
+        ControlClass.changeAddress(shop, shopAddress2);
         ControlClass.salaryChange(cashier, 200);
         ControlClass.setDiscount(pants, 20);
 

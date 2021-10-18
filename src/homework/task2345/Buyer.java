@@ -6,8 +6,7 @@ import homework.task2345.shop.catalog.Wear;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 import static homework.task2345.shop.Department.increaseProceeds;
 
@@ -15,16 +14,13 @@ public class Buyer implements WearSelectable, Buyable {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private int height;
-    private int chest;
-    private int waist;
     private double money;
     private boolean isToShop;
+    private Map<String, Integer> sizes;
+    private List<Wear> wardrobe;
 
-    public Buyer(int height, int chestSize, int waistSize, double money) {
-        this.height = height;
-        this.chest = chestSize;
-        this.waist = waistSize;
+    public Buyer(Map<String, Integer> sizes, double money) {
+        this.sizes = sizes;
         this.money = money;
     }
 
@@ -33,6 +29,7 @@ public class Buyer implements WearSelectable, Buyable {
         boolean selected = pants.getProductCost() < 150;
         if (selected) {
             LOGGER.debug("Pants is selected");
+            this.wardrobe.add(pants);
         }
         return selected;
     }
@@ -42,6 +39,7 @@ public class Buyer implements WearSelectable, Buyable {
         boolean selected = outerwear.getProductCost() < 300;
         if (selected) {
             LOGGER.debug("Outerwear is selected");
+            this.wardrobe.add(outerwear);
         }
         return selected;
     }
@@ -51,6 +49,7 @@ public class Buyer implements WearSelectable, Buyable {
         boolean selected = shirt.getProductCost() < 100;
         if (selected) {
             LOGGER.debug("Shirt is selected");
+            this.wardrobe.add(shirt);
         }
         return selected;
     }
@@ -95,28 +94,32 @@ public class Buyer implements WearSelectable, Buyable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Buyer buyer = (Buyer) o;
-        return height == buyer.height && chest == buyer.chest && waist == buyer.waist && Double.compare(buyer.money, money) == 0;
+        return Double.compare(buyer.money, money) == 0 && isToShop == buyer.isToShop && sizes.equals(buyer.sizes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, chest, waist, money);
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getChest() {
-        return chest;
-    }
-
-    public int getWaist() {
-        return waist;
+        return Objects.hash(money, isToShop, sizes);
     }
 
     public double getMoney() {
         return money;
+    }
+
+    public boolean isToShop() {
+        return isToShop;
+    }
+
+    public void setToShop(boolean toShop) {
+        isToShop = toShop;
+    }
+
+    public Map<String, Integer> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(Map<String, Integer> sizes) {
+        this.sizes = sizes;
     }
 
     public void setMoney(double money) throws BuyerDataException {
@@ -124,5 +127,13 @@ public class Buyer implements WearSelectable, Buyable {
             throw new BuyerDataException("Value less than zero");
         }
         this.money = this.money + money;
+    }
+
+    public List<Wear> getWardrobe() {
+        return wardrobe;
+    }
+
+    public void setWardrobe(List<Wear> wardrobe) {
+        this.wardrobe = wardrobe;
     }
 }

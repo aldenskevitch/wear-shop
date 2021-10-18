@@ -2,12 +2,12 @@ package homework.task2345.shop;
 
 import java.util.Objects;
 
-public class Address {
+public class Address<T> {
 
     private String street;
-    private String houseNumber;
+    private T houseNumber;
 
-    public Address(String street, String houseNumber) {
+    public Address(String street, T houseNumber) {
         this.street = street;
         this.houseNumber = houseNumber;
     }
@@ -21,8 +21,8 @@ public class Address {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return street.equals(address.street) && houseNumber.equals(address.houseNumber);
+        Address<?> address = (Address<?>) o;
+        return Objects.equals(street, address.street) && Objects.equals(houseNumber, address.houseNumber);
     }
 
     @Override
@@ -38,11 +38,12 @@ public class Address {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public T getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(String houseNumber) {
+    public void setHouseNumber(T houseNumber) {
         this.houseNumber = houseNumber;
     }
 }
+

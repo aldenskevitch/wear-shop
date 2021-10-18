@@ -1,36 +1,45 @@
 package homework.task2345.shop;
 
-import homework.task2345.Cashier;
+import homework.task2345.shop.catalog.Basket;
 import homework.task2345.shop.catalog.Product;
 import homework.task2345.shop.catalog.Wear;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.List;
 
-public class ShoppingCart implements Sellable {
+public class ShoppingCart<E extends Position> implements Sellable {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
     private double totalPrice;
-    private Wear[] wears;
+    private List<Double> prices;
+    private Basket<Wear> wearBasket;
 
-    public void add(Wear... wears) {
-        this.wears = wears;
-        for (Product wear : this.wears) {
-            this.totalPrice += wear.getProductCost();
+    public void addWears(List<Wear> wears) {
+        wearBasket.setProduct(wears);
+        for (Wear wear : wearBasket.getProduct()) {
+            this.prices.add(wear.getProductCost());
         }
     }
 
-    public void printCheck(Shop shop, Cashier cashier) {
+    public void calculatedTotalPrice() {
+        for (Double price : prices) {
+            this.totalPrice += price;
+        }
+    }
+
+    public void printCheck(Shop shop, E employee) {
         LOGGER.debug("\n" + shop.getShopName());
-        LOGGER.debug(shop.getAddress().getStreet() + " " + shop.getAddress().getHouseNumber());
-        LOGGER.debug("Seller:" + shop.getDepartment().getEmployee(cashier).getName() + shop.getDepartment().getEmployee(cashier).getSurname());
+        LOGGER.debug(shop.getAddresses().getStreet() + " " + shop.getAddresses().getHouseNumber());
+        LOGGER.debug("Seller:" + shop.getDepartment().getEmployee(employee).getName() + shop.getDepartment().getEmployee(employee).getSurname());
         LOGGER.debug("Date: " + LocalDateTime.now().toLocalDate());
         LOGGER.debug("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-        for (int i = 0; i < wears.length; i++) {
-            LOGGER.debug((i + 1) + ". ......" + wears[i].getProductCost());
+        int i = 1;
+        for (Product wear : wearBasket.getProduct()) {
+            LOGGER.debug((i) + ". ......" + wear.getProductCost());
+            i++;
         }
         LOGGER.debug("Total...." + totalPrice + "\n\n\n");
     }
@@ -39,15 +48,17 @@ public class ShoppingCart implements Sellable {
     public void printCheck() {
         LOGGER.debug("Date: " + LocalDateTime.now().toLocalDate());
         LOGGER.debug("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-        for (int i = 0; i < wears.length; i++) {
-            LOGGER.debug((i + 1) + ". ......" + wears[i].getProductCost());
+        int i = 1;
+        for (Product wear : wearBasket.getProduct()) {
+            LOGGER.debug((i) + ". ......" + wear.getProductCost());
+            i++;
         }
         LOGGER.debug("Total...." + totalPrice);
     }
 
     @Override
     public String toString() {
-        return "Total price: " + totalPrice + " for " + Arrays.toString(wears);
+        return "Total price: " + totalPrice + " for " + wearBasket;
     }
 
     public double getTotalPrice() {
@@ -56,5 +67,21 @@ public class ShoppingCart implements Sellable {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Basket<Wear> getWearBasket() {
+        return wearBasket;
+    }
+
+    public void setWearBasket(Basket<Wear> wearBasket) {
+        this.wearBasket = wearBasket;
+    }
+
+    public List<Double> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(List<Double> prices) {
+        this.prices = prices;
     }
 }

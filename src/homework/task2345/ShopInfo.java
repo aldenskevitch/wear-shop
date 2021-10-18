@@ -11,7 +11,8 @@ import java.util.Objects;
 public class ShopInfo implements AutoCloseable {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private String filePath = "ShopInfo.txt";
+
+    private final String FILEPATH = "ShopInfo.txt";
 
     public void writeToFile(String filePath) throws IOException {
         File file = new File(filePath);
@@ -21,7 +22,7 @@ public class ShopInfo implements AutoCloseable {
     @Override
     public String toString() {
         return "ShopInfo{" +
-                "filePath='" + filePath + '\'' +
+                "filePath='" + FILEPATH + '\'' +
                 '}';
     }
 
@@ -30,20 +31,16 @@ public class ShopInfo implements AutoCloseable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShopInfo shopInfo = (ShopInfo) o;
-        return Objects.equals(filePath, shopInfo.filePath);
+        return Objects.equals(FILEPATH, shopInfo.FILEPATH);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePath);
+        return Objects.hash(FILEPATH);
     }
 
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public String getFILEPATH() {
+        return FILEPATH;
     }
 
     @Override

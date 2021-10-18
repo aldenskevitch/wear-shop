@@ -1,6 +1,6 @@
 package homework.task2345.shop;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Department {
@@ -8,17 +8,22 @@ public class Department {
     private static double proceeds = 0;
 
     private String nameDepartment;
-    private Employee[] employees;
+    private List<Employee> employees;
+    private List<Position> positions;
 
-    public Department(String nameDepartment, Employee... employees) {
+    public Department(String nameDepartment, List<Employee> employees) {
         this.nameDepartment = nameDepartment;
         this.employees = employees;
     }
 
     public void addEmployee(Employee employee) {
-        this.employees = Arrays.copyOf(this.employees, this.employees.length + 1);
-        this.employees[this.employees.length - 1] = employee;
+        this.employees.add(employee);
     }
+
+    public void addPosition(Position position) {
+        this.positions.add(position);
+    }
+
 
     public static double increaseProceeds(double value) {
         proceeds += value;
@@ -26,16 +31,16 @@ public class Department {
     }
 
     public Employee getEmployee(Position position) {
-        for (int i = 0; i < this.employees.length; i++) {
-            if (this.employees[i].getPosition().equals(position))
-                return employees[i];
+        for (Employee employee : this.employees) {
+            if (employee.getPosition().equals(position))
+                return employee;
         }
         return null;
     }
 
     @Override
     public String toString() {
-        return nameDepartment + "Employees: " + Arrays.toString(employees);
+        return nameDepartment + "Employees: " + employees;
     }
 
     @Override
@@ -67,11 +72,19 @@ public class Department {
         this.nameDepartment = nameDepartment;
     }
 
-    public Employee[] getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(Employee... employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<Position> positions) {
+        this.positions = positions;
     }
 }

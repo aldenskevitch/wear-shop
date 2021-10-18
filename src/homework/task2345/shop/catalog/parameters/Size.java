@@ -2,27 +2,22 @@ package homework.task2345.shop.catalog.parameters;
 
 import homework.task2345.Buyer;
 
-import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 public class Size {
 
-    private int[] size = new int[3];
+    private Map<String, Integer> size;
 
     public Size(Buyer buyer) {
-        for (int i = 0; i < size.length; i++) {
-            if (i == 0) {
-                size[i] = buyer.getHeight();
-            } else if (i == 1) {
-                size[i] = buyer.getChest();
-            } else {
-                size[i] = buyer.getWaist();
-            }
-        }
+        this.size = buyer.getSizes();
     }
 
     @Override
     public String toString() {
-        return "Size: " + Arrays.toString(size);
+        return "Size{" +
+                "size=" + size +
+                '}';
     }
 
     @Override
@@ -30,19 +25,19 @@ public class Size {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Size size1 = (Size) o;
-        return Arrays.equals(size, size1.size);
+        return Objects.equals(size, size1.size);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(size);
+        return Objects.hash(size);
     }
 
-    public int[] getSize() {
+    public Map<String, Integer> getSize() {
         return size;
     }
 
-    public void setSize(int[] size) {
+    public void setSize(Map<String, Integer> size) {
         this.size = size;
     }
 }

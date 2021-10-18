@@ -18,5 +18,4 @@ public class Consultant extends Position implements Consultantable {
     public String toString() {
         return this.positionName;
     }
-
 }
