@@ -1,7 +1,5 @@
 # Default ignored files
-.idea
+.idea/
 *.iml
-out
-
-
-/target/
+out/
+target/
