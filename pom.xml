@@ -11,9 +11,21 @@
 
     <properties>
         <log4jVersion>2.14.1</log4jVersion>
+        <commons-io>2.11.0</commons-io>
+        <commons-lang3>3.12.0</commons-lang3>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
