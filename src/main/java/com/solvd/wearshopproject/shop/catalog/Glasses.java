@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog;
+package com.solvd.wearshopproject.shop.catalog;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,8 +1,8 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.Sellable;
-import com.solvd.tacoursesolvd.wearshopproject.shop.Workable;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.TryableOn;
+import com.solvd.wearshopproject.shop.Sellable;
+import com.solvd.wearshopproject.shop.Workable;
+import com.solvd.wearshopproject.shop.catalog.TryableOn;
 
 public interface ShopService {
 

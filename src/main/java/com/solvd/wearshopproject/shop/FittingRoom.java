@@ -1,6 +1,6 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop;
+package com.solvd.wearshopproject.shop;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.Wear;
 
 public class FittingRoom {
 

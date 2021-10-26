@@ -1,6 +1,6 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.Position;
+import com.solvd.wearshopproject.shop.Position;
 
 public class Consultant extends Position implements Consultantable {
 

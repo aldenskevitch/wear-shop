@@ -1,6 +1,6 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.Wear;
 
 public interface WearSelectable {
 

@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters;
+package com.solvd.wearshopproject.shop.catalog.parameters;
 
 import java.util.Objects;
 

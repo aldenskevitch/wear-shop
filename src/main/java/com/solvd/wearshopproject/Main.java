@@ -1,12 +1,11 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.homework.task7.shop.*;
-import com.solvd.tacoursesolvd.wearshopproject.shop.*;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Glasses;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.MenWear;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Wear;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.FabricParameter;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.Size;
+import com.solvd.wearshopproject.shop.*;
+import com.solvd.wearshopproject.shop.catalog.Glasses;
+import com.solvd.wearshopproject.shop.catalog.MenWear;
+import com.solvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.parameters.FabricParameter;
+import com.solvd.wearshopproject.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

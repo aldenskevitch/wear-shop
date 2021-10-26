@@ -1,14 +1,14 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.Shop;
-import com.solvd.tacoursesolvd.wearshopproject.shop.ShoppingCart;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.Shop;
+import com.solvd.wearshopproject.shop.ShoppingCart;
+import com.solvd.wearshopproject.shop.catalog.Wear;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-import static com.solvd.tacoursesolvd.wearshopproject.shop.Department.increaseProceeds;
+import static com.solvd.wearshopproject.shop.Department.increaseProceeds;
 
 public class Buyer implements WearSelectable, Buyable {
 

@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog;
+package com.solvd.wearshopproject.shop.catalog;
 
 public interface TryableOn {
 

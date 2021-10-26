@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
 public class ShopTimeException extends Exception {
 

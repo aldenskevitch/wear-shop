@@ -1,6 +1,6 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.Address;
+import com.solvd.wearshopproject.shop.Address;
 
 import java.util.Objects;
 

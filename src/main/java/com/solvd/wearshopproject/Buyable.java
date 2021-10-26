@@ -1,7 +1,7 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.Shop;
-import com.solvd.tacoursesolvd.wearshopproject.shop.ShoppingCart;
+import com.solvd.wearshopproject.shop.Shop;
+import com.solvd.wearshopproject.shop.ShoppingCart;
 
 public interface Buyable {
 

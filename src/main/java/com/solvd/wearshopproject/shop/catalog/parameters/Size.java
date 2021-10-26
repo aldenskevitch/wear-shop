@@ -1,6 +1,6 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters;
+package com.solvd.wearshopproject.shop.catalog.parameters;
 
-import com.solvd.tacoursesolvd.wearshopproject.Buyer;
+import com.solvd.wearshopproject.Buyer;
 
 import java.util.Map;
 import java.util.Objects;
