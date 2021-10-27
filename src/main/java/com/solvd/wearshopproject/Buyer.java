@@ -13,15 +13,23 @@ import static com.solvd.wearshopproject.shop.Department.increaseProceeds;
 public class Buyer implements WearSelectable, Buyable {
 
     private static final Logger LOGGER = LogManager.getLogger();
+    private static Buyer myBuyer;
 
     private double money;
     private boolean isToShop;
     private Map<String, Integer> sizes;
-    private List<Wear> wardrobe=new ArrayList<>();
+    private List<Wear> wardrobe = new ArrayList<>();
 
-    public Buyer(Map<String, Integer> sizes, double money) {
+    private Buyer(Map<String, Integer> sizes, double money) {
         this.sizes = sizes;
         this.money = money;
+    }
+
+    public static Buyer createBuyer(Map<String, Integer> sizes, double money) {
+        if (myBuyer == null) {
+            myBuyer = new Buyer(sizes, money);
+        }
+        return myBuyer;
     }
 
     @Override

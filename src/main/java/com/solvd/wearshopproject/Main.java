@@ -15,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.*;
 
+import static com.solvd.wearshopproject.Buyer.createBuyer;
+
 
 public class Main {
 
@@ -45,7 +47,7 @@ public class Main {
         sizes.put("height", 170);
         sizes.put("chest", 80);
         sizes.put("waist", 50);
-        Buyer buyer = new Buyer(sizes, 600.00);
+        Buyer buyer = createBuyer(sizes, 600.00);
         Size size = new Size(buyer);
 
         FabricParameter pantsFabric = new FabricParameter(Color.BLUE.toString(), Fabric.JEANS.toString());

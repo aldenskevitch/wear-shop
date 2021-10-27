@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
 
-public class WordCount<E> {
+public class WordCount {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -57,15 +57,11 @@ public class WordCount<E> {
         FileUtils.writeLines(resultFile, Collections.singleton(result.toString()));
     }
 
-    public static Logger getLOGGER() {
-        return LOGGER;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        WordCount<?> wordCount = (WordCount<?>) o;
+        WordCount wordCount = (WordCount) o;
         return Objects.equals(file, wordCount.file) && Objects.equals(resultFile, wordCount.resultFile);
     }
 
