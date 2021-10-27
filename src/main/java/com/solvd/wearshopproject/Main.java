@@ -9,7 +9,9 @@ import com.solvd.wearshopproject.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.*;
+
 
 public class Main {
 
@@ -115,6 +117,14 @@ public class Main {
             LOGGER.debug("Other exception");
         } finally {
             LOGGER.debug("Operation is completed");
+        }
+
+        String filePath = "article.txt";
+        WordCount wordCount = new WordCount(filePath);
+        try {
+            wordCount.calculateWords();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
