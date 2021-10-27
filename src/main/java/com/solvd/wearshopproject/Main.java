@@ -3,7 +3,10 @@ package com.solvd.wearshopproject;
 import com.solvd.wearshopproject.shop.*;
 import com.solvd.wearshopproject.shop.catalog.Glasses;
 import com.solvd.wearshopproject.shop.catalog.MenWear;
+import com.solvd.wearshopproject.shop.catalog.ProductTypes;
 import com.solvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.parameters.Color;
+import com.solvd.wearshopproject.shop.catalog.parameters.Fabric;
 import com.solvd.wearshopproject.shop.catalog.parameters.FabricParameter;
 import com.solvd.wearshopproject.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +23,6 @@ public class Main {
     public static void main(String[] args) {
 
         Date date = new Date();
-
         Consultant consultant = new Consultant(800.00);
         Cashier cashier = new Cashier(1000.00);
         Employee employee1 = new Employee("Ivan", "Ivanov", cashier);
@@ -46,14 +48,14 @@ public class Main {
         Buyer buyer = new Buyer(sizes, 600.00);
         Size size = new Size(buyer);
 
-        FabricParameter pantsFabric = new FabricParameter("gray", "jeans");
-        FabricParameter outerwearFabric = new FabricParameter("brown", "leather");
-        FabricParameter shirtFabric = new FabricParameter("gray", "cotton");
+        FabricParameter pantsFabric = new FabricParameter(Color.BLUE.toString(), Fabric.JEANS.toString());
+        FabricParameter outerwearFabric = new FabricParameter(Color.BROWN.toString(), Fabric.LEATHER.toString());
+        FabricParameter shirtFabric = new FabricParameter(Color.GREEN.toString(), Fabric.COTTON.toString());
 
-        Wear pants = new MenWear("pants", 100.00, size, pantsFabric);
-        Wear outerwear = new MenWear("outerwear", 200.00, size, outerwearFabric);
-        Wear shirt = new MenWear("shirt", 50.00, size, shirtFabric);
-        Glasses glasses = new Glasses("SunGlasses", 50.00);
+        Wear pants = new MenWear(ProductTypes.PANTS.toString(), size, pantsFabric);
+        Wear outerwear = new MenWear(ProductTypes.OUTERWEAR.toString(), size, outerwearFabric);
+        Wear shirt = new MenWear(ProductTypes.SHIRT.toString(), size, shirtFabric);
+        Glasses glasses = new Glasses(ProductTypes.SUNGLASSES.toString());
 
         FittingRoom fitting = new FittingRoom();
         ShoppingCart<Position> shoppingCart = new ShoppingCart<>();
@@ -119,7 +121,7 @@ public class Main {
             LOGGER.debug("Operation is completed");
         }
 
-        String filePath = "article.txt";
+        String filePath = "src/article.txt";
         WordCount wordCount = new WordCount(filePath);
         try {
             wordCount.calculateWords();

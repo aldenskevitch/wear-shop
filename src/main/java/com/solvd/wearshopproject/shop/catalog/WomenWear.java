@@ -10,7 +10,7 @@ public class WomenWear extends Wear {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public WomenWear(String productName, Double productCost, Size size, FabricParameter fabric) {
-        super(productName, productCost, size, fabric);
+        super(productName, size, fabric);
     }
 
     @Override

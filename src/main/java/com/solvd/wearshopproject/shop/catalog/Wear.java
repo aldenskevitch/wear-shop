@@ -14,8 +14,8 @@ public class Wear extends Product implements TryableOn {
     private Size size;
     private FabricParameter fabric;
 
-    public Wear(String productName, Double productCost, Size size, FabricParameter fabric) {
-        super(productName, productCost);
+    public Wear(String productName, Size size, FabricParameter fabric) {
+        super(productName);
         this.size = size;
         this.fabric = fabric;
     }

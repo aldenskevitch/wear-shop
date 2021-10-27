@@ -9,8 +9,8 @@ public class MenWear extends Wear {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public MenWear(String productName, Double productCost, Size size, FabricParameter fabric) {
-        super(productName, productCost, size, fabric);
+    public MenWear(String productName, Size size, FabricParameter fabric) {
+        super(productName, size, fabric);
     }
 
     @Override

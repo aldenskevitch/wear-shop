@@ -17,7 +17,7 @@ public class Buyer implements WearSelectable, Buyable {
     private double money;
     private boolean isToShop;
     private Map<String, Integer> sizes;
-    private List<Wear> wardrobe;
+    private List<Wear> wardrobe=new ArrayList<>();
 
     public Buyer(Map<String, Integer> sizes, double money) {
         this.sizes = sizes;

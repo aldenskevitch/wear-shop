@@ -7,9 +7,22 @@ public abstract class Product {
     protected String productName;
     protected Double productCost;
 
-    public Product(String productName, Double productCost) {
+    public Product(String productName) {
+        switch (productName) {
+            case "PANTS":
+                this.productCost = 100.00;
+                break;
+            case "OUTERWEAR":
+                this.productCost = 200.00;
+                break;
+            case "SHIRT":
+                this.productCost = 50.00;
+                break;
+            case "SUNGLASSES":
+                this.productCost = 60.00;
+                break;
+        }
         this.productName = productName;
-        this.productCost = productCost;
     }
 
     public abstract void doPrepareForSale();
