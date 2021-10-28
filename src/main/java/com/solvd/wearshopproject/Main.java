@@ -3,7 +3,7 @@ package com.solvd.wearshopproject;
 import com.solvd.wearshopproject.shop.*;
 import com.solvd.wearshopproject.shop.catalog.Glasses;
 import com.solvd.wearshopproject.shop.catalog.MenWear;
-import com.solvd.wearshopproject.shop.catalog.ProductTypes;
+import com.solvd.wearshopproject.shop.catalog.ProductType;
 import com.solvd.wearshopproject.shop.catalog.Wear;
 import com.solvd.wearshopproject.shop.catalog.parameters.Color;
 import com.solvd.wearshopproject.shop.catalog.parameters.Fabric;
@@ -53,10 +53,10 @@ public class Main {
         FabricParameter outerwearFabric = new FabricParameter(Color.BROWN, Fabric.LEATHER);
         FabricParameter shirtFabric = new FabricParameter(Color.GREEN, Fabric.COTTON);
 
-        Wear pants = new MenWear(ProductTypes.PANTS, size, pantsFabric);
-        Wear outerwear = new MenWear(ProductTypes.OUTERWEAR, size, outerwearFabric);
-        Wear shirt = new MenWear(ProductTypes.SHIRT, size, shirtFabric);
-        Glasses glasses = new Glasses(ProductTypes.SUNGLASSES);
+        Wear pants = new MenWear(ProductType.PANTS, size, pantsFabric);
+        Wear outerwear = new MenWear(ProductType.OUTERWEAR, size, outerwearFabric);
+        Wear shirt = new MenWear(ProductType.SHIRT, size, shirtFabric);
+        Glasses glasses = new Glasses(ProductType.SUNGLASSES);
 
         FittingRoom fitting = new FittingRoom();
         ShoppingCart<Position> shoppingCart = new ShoppingCart<>();

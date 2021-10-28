@@ -3,7 +3,7 @@ package com.solvd.wearshopproject;
 import com.solvd.wearshopproject.shop.Shop;
 import com.solvd.wearshopproject.shop.ShoppingCart;
 import com.solvd.wearshopproject.shop.catalog.Product;
-import com.solvd.wearshopproject.shop.catalog.ProductTypes;
+import com.solvd.wearshopproject.shop.catalog.ProductType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,15 +36,15 @@ public class Buyer implements WearSelectable, Buyable {
     @Override
     public boolean selectProduct(Product product) {
         boolean selected = false;
-        if (product.getProductName() == ProductTypes.PANTS) {
+        if (ProductType.PANTS.equals(product.getProductType())) {
             selected = product.getProductCost() < 150;
-        } else if (product.getProductName() == ProductTypes.OUTERWEAR) {
+        } else if (ProductType.OUTERWEAR.equals(product.getProductType())) {
             selected = product.getProductCost() < 300;
-        } else if (product.getProductName() == ProductTypes.SHIRT) {
+        } else if (ProductType.SHIRT.equals(product.getProductType())) {
             selected = product.getProductCost() < 100;
         }
         if (selected) {
-            LOGGER.debug(product.getProductName().getDescription() + " was added.");
+            LOGGER.debug(product.getProductType().getDescription() + " was added.");
             this.wardrobe.add(product);
         }
         return selected;

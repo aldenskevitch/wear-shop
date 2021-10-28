@@ -9,7 +9,7 @@ public class MenWear extends Wear {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public MenWear(ProductTypes productName, Size size, FabricParameter fabric) {
+    public MenWear(ProductType productName, Size size, FabricParameter fabric) {
         super(productName, size, fabric);
     }
 

@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public abstract class Product {
 
-    protected ProductTypes productName;
+    protected ProductType productName;
     protected Double productCost;
 
-    public Product(ProductTypes productName) {
+    public Product(ProductType productName) {
         switch (productName) {
             case PANTS:
                 this.productCost = 100.00;
@@ -47,11 +47,11 @@ public abstract class Product {
         return Objects.hash(productName, productCost);
     }
 
-    public ProductTypes getProductName() {
+    public ProductType getProductType() {
         return productName;
     }
 
-    public void setProductName(ProductTypes productName) {
+    public void setProductType(ProductType productName) {
         this.productName = productName;
     }
 
