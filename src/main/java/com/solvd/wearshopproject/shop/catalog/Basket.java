@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog;
+package com.solvd.wearshopproject.shop.catalog;
 
 import java.util.List;
 import java.util.Objects;

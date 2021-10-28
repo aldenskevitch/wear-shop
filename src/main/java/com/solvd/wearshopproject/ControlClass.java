@@ -1,8 +1,8 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.Address;
-import com.solvd.tacoursesolvd.wearshopproject.shop.Position;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Product;
+import com.solvd.wearshopproject.shop.Address;
+import com.solvd.wearshopproject.shop.Position;
+import com.solvd.wearshopproject.shop.catalog.Product;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

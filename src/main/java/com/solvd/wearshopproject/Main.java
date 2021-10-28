@@ -1,16 +1,21 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.homework.task7.shop.*;
-import com.solvd.tacoursesolvd.wearshopproject.shop.*;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Glasses;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.MenWear;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Wear;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.FabricParameter;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.Size;
+import com.solvd.wearshopproject.shop.*;
+import com.solvd.wearshopproject.shop.catalog.Glasses;
+import com.solvd.wearshopproject.shop.catalog.MenWear;
+import com.solvd.wearshopproject.shop.catalog.ProductType;
+import com.solvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.parameters.Color;
+import com.solvd.wearshopproject.shop.catalog.parameters.Fabric;
+import com.solvd.wearshopproject.shop.catalog.parameters.FabricParameter;
+import com.solvd.wearshopproject.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.*;
+
+import static com.solvd.wearshopproject.Buyer.createBuyer;
 
 public class Main {
 
@@ -19,7 +24,6 @@ public class Main {
     public static void main(String[] args) {
 
         Date date = new Date();
-
         Consultant consultant = new Consultant(800.00);
         Cashier cashier = new Cashier(1000.00);
         Employee employee1 = new Employee("Ivan", "Ivanov", cashier);
@@ -42,17 +46,17 @@ public class Main {
         sizes.put("height", 170);
         sizes.put("chest", 80);
         sizes.put("waist", 50);
-        Buyer buyer = new Buyer(sizes, 600.00);
+        Buyer buyer = createBuyer(sizes, 600.00);
         Size size = new Size(buyer);
 
-        FabricParameter pantsFabric = new FabricParameter("gray", "jeans");
-        FabricParameter outerwearFabric = new FabricParameter("brown", "leather");
-        FabricParameter shirtFabric = new FabricParameter("gray", "cotton");
+        FabricParameter pantsFabric = new FabricParameter(Color.BLUE, Fabric.JEANS);
+        FabricParameter outerwearFabric = new FabricParameter(Color.BROWN, Fabric.LEATHER);
+        FabricParameter shirtFabric = new FabricParameter(Color.GREEN, Fabric.COTTON);
 
-        Wear pants = new MenWear("pants", 100.00, size, pantsFabric);
-        Wear outerwear = new MenWear("outerwear", 200.00, size, outerwearFabric);
-        Wear shirt = new MenWear("shirt", 50.00, size, shirtFabric);
-        Glasses glasses = new Glasses("SunGlasses", 50.00);
+        Wear pants = new MenWear(ProductType.PANTS, size, pantsFabric);
+        Wear outerwear = new MenWear(ProductType.OUTERWEAR, size, outerwearFabric);
+        Wear shirt = new MenWear(ProductType.SHIRT, size, shirtFabric);
+        Glasses glasses = new Glasses(ProductType.SUNGLASSES);
 
         FittingRoom fitting = new FittingRoom();
         ShoppingCart<Position> shoppingCart = new ShoppingCart<>();
@@ -67,15 +71,15 @@ public class Main {
         }
 
         List<Wear> wears = new ArrayList<>();
-        if (buyer.selectPants(pants)) {
+        if (buyer.selectProduct(pants)) {
             LOGGER.debug(fitting.tryOn(pants));
             wears.add(pants);
         }
-        if (buyer.selectOuterwear(outerwear)) {
+        if (buyer.selectProduct(outerwear)) {
             LOGGER.debug(fitting.tryOn(outerwear));
             wears.add(outerwear);
         }
-        if (buyer.selectShirt(shirt)) {
+        if (buyer.selectProduct(shirt)) {
             LOGGER.debug(fitting.tryOn(shirt));
             wears.add(shirt);
         }
@@ -116,6 +120,14 @@ public class Main {
             LOGGER.debug("Other exception");
         } finally {
             LOGGER.debug("Operation is completed");
+        }
+
+        String filePath = "src/main/resources/article.txt";
+        WordCount wordCount = new WordCount(filePath);
+        try {
+            wordCount.calculateWords();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

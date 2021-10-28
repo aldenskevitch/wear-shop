@@ -1,7 +1,7 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog;
+package com.solvd.wearshopproject.shop.catalog;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.FabricParameter;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.Size;
+import com.solvd.wearshopproject.shop.catalog.parameters.FabricParameter;
+import com.solvd.wearshopproject.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,8 +9,8 @@ public class MenWear extends Wear {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public MenWear(String productName, Double productCost, Size size, FabricParameter fabric) {
-        super(productName, productCost, size, fabric);
+    public MenWear(ProductType productName, Size size, FabricParameter fabric) {
+        super(productName, size, fabric);
     }
 
     @Override

@@ -3,3 +3,5 @@
 *.iml
 out/
 target/
+*.txt
+log.log

@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog;
+package com.solvd.wearshopproject.shop.catalog;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,8 +7,8 @@ public class Glasses extends Product implements TryableOn {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public Glasses(String productName, Double productCost) {
-        super(productName, productCost);
+    public Glasses(ProductType productName) {
+        super(productName);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class Glasses extends Product implements TryableOn {
 
     @Override
     public void tryOn() {
-        LOGGER.debug("Trying on " + this.getProductName() + "...");
+        LOGGER.debug("Trying on " + this.getProductType() + "...");
     }
 }

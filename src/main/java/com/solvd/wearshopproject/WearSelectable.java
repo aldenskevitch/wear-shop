@@ -1,13 +1,9 @@
-package com.solvd.tacoursesolvd.wearshopproject;
+package com.solvd.wearshopproject;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.Product;
 
 public interface WearSelectable {
 
-    boolean selectPants(Wear pants);
-
-    boolean selectOuterwear(Wear outerwear);
-
-    boolean selectShirt(Wear shirt);
+    boolean selectProduct(Product product);
 
 }

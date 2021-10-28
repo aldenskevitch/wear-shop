@@ -1,7 +1,7 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog;
+package com.solvd.wearshopproject.shop.catalog;
 
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.FabricParameter;
-import com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters.Size;
+import com.solvd.wearshopproject.shop.catalog.parameters.FabricParameter;
+import com.solvd.wearshopproject.shop.catalog.parameters.Size;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,8 +14,8 @@ public class Wear extends Product implements TryableOn {
     private Size size;
     private FabricParameter fabric;
 
-    public Wear(String productName, Double productCost, Size size, FabricParameter fabric) {
-        super(productName, productCost);
+    public Wear(ProductType productName, Size size, FabricParameter fabric) {
+        super(productName);
         this.size = size;
         this.fabric = fabric;
     }
@@ -27,7 +27,7 @@ public class Wear extends Product implements TryableOn {
 
     @Override
     public void tryOn() {
-        LOGGER.debug("Trying on " + this.getProductName() + "...");
+        LOGGER.debug("Trying on " + this.getProductType() + "...");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop;
+package com.solvd.wearshopproject.shop;
 
 import java.util.Objects;
 

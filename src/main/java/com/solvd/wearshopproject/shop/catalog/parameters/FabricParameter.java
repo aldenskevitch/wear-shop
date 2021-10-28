@@ -1,20 +1,20 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop.catalog.parameters;
+package com.solvd.wearshopproject.shop.catalog.parameters;
 
 import java.util.Objects;
 
 public class FabricParameter {
 
-    private String colorClothes;
-    private String materialClothes;
+    private Color colorClothes;
+    private Fabric materialClothes;
 
-    public FabricParameter(String colorClothes, String materialClothes) {
+    public FabricParameter(Color colorClothes, Fabric materialClothes) {
         this.colorClothes = colorClothes;
         this.materialClothes = materialClothes;
     }
 
     @Override
     public String toString() {
-        return colorClothes + materialClothes;
+        return colorClothes.toString() + materialClothes.toString();
     }
 
     @Override
@@ -30,19 +30,19 @@ public class FabricParameter {
         return Objects.hash(colorClothes, materialClothes);
     }
 
-    public String getColorClothes() {
+    public Color getColorClothes() {
         return colorClothes;
     }
 
-    public void setColorClothes(String colorClothes) {
+    public void setColorClothes(Color colorClothes) {
         this.colorClothes = colorClothes;
     }
 
-    public String getMaterialClothes() {
+    public Fabric getMaterialClothes() {
         return materialClothes;
     }
 
-    public void setMaterialClothes(String materialClothes) {
+    public void setMaterialClothes(Fabric materialClothes) {
         this.materialClothes = materialClothes;
     }
 }

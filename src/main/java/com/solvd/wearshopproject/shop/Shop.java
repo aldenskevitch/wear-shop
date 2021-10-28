@@ -1,6 +1,6 @@
-package com.solvd.tacoursesolvd.wearshopproject.shop;
+package com.solvd.wearshopproject.shop;
 
-import com.solvd.tacoursesolvd.wearshopproject.PublicBuilding;
+import com.solvd.wearshopproject.PublicBuilding;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
