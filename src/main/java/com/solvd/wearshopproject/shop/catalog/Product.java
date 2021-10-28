@@ -4,23 +4,25 @@ import java.util.Objects;
 
 public abstract class Product {
 
-    protected String productName;
+    protected ProductTypes productName;
     protected Double productCost;
 
-    public Product(String productName) {
+    public Product(ProductTypes productName) {
         switch (productName) {
-            case "PANTS":
+            case PANTS:
                 this.productCost = 100.00;
                 break;
-            case "OUTERWEAR":
+            case OUTERWEAR:
                 this.productCost = 200.00;
                 break;
-            case "SHIRT":
+            case SHIRT:
                 this.productCost = 50.00;
                 break;
-            case "SUNGLASSES":
+            case SUNGLASSES:
                 this.productCost = 60.00;
                 break;
+            default:
+                this.productCost = 0.00;
         }
         this.productName = productName;
     }
@@ -29,7 +31,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return this.productName + this.productCost;
+        return this.productName.toString() + this.productCost;
     }
 
     @Override
@@ -45,11 +47,11 @@ public abstract class Product {
         return Objects.hash(productName, productCost);
     }
 
-    public String getProductName() {
+    public ProductTypes getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(ProductTypes productName) {
         this.productName = productName;
     }
 

@@ -17,7 +17,6 @@ import java.util.*;
 
 import static com.solvd.wearshopproject.Buyer.createBuyer;
 
-
 public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -50,14 +49,14 @@ public class Main {
         Buyer buyer = createBuyer(sizes, 600.00);
         Size size = new Size(buyer);
 
-        FabricParameter pantsFabric = new FabricParameter(Color.BLUE.toString(), Fabric.JEANS.toString());
-        FabricParameter outerwearFabric = new FabricParameter(Color.BROWN.toString(), Fabric.LEATHER.toString());
-        FabricParameter shirtFabric = new FabricParameter(Color.GREEN.toString(), Fabric.COTTON.toString());
+        FabricParameter pantsFabric = new FabricParameter(Color.BLUE, Fabric.JEANS);
+        FabricParameter outerwearFabric = new FabricParameter(Color.BROWN, Fabric.LEATHER);
+        FabricParameter shirtFabric = new FabricParameter(Color.GREEN, Fabric.COTTON);
 
-        Wear pants = new MenWear(ProductTypes.PANTS.toString(), size, pantsFabric);
-        Wear outerwear = new MenWear(ProductTypes.OUTERWEAR.toString(), size, outerwearFabric);
-        Wear shirt = new MenWear(ProductTypes.SHIRT.toString(), size, shirtFabric);
-        Glasses glasses = new Glasses(ProductTypes.SUNGLASSES.toString());
+        Wear pants = new MenWear(ProductTypes.PANTS, size, pantsFabric);
+        Wear outerwear = new MenWear(ProductTypes.OUTERWEAR, size, outerwearFabric);
+        Wear shirt = new MenWear(ProductTypes.SHIRT, size, shirtFabric);
+        Glasses glasses = new Glasses(ProductTypes.SUNGLASSES);
 
         FittingRoom fitting = new FittingRoom();
         ShoppingCart<Position> shoppingCart = new ShoppingCart<>();
@@ -72,15 +71,15 @@ public class Main {
         }
 
         List<Wear> wears = new ArrayList<>();
-        if (buyer.selectPants(pants)) {
+        if (buyer.selectProduct(pants)) {
             LOGGER.debug(fitting.tryOn(pants));
             wears.add(pants);
         }
-        if (buyer.selectOuterwear(outerwear)) {
+        if (buyer.selectProduct(outerwear)) {
             LOGGER.debug(fitting.tryOn(outerwear));
             wears.add(outerwear);
         }
-        if (buyer.selectShirt(shirt)) {
+        if (buyer.selectProduct(shirt)) {
             LOGGER.debug(fitting.tryOn(shirt));
             wears.add(shirt);
         }
@@ -123,7 +122,7 @@ public class Main {
             LOGGER.debug("Operation is completed");
         }
 
-        String filePath = "src/article.txt";
+        String filePath = "src/main/resources/article.txt";
         WordCount wordCount = new WordCount(filePath);
         try {
             wordCount.calculateWords();

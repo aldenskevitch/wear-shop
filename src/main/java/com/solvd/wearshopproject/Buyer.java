@@ -2,7 +2,8 @@ package com.solvd.wearshopproject;
 
 import com.solvd.wearshopproject.shop.Shop;
 import com.solvd.wearshopproject.shop.ShoppingCart;
-import com.solvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.Product;
+import com.solvd.wearshopproject.shop.catalog.ProductTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +19,7 @@ public class Buyer implements WearSelectable, Buyable {
     private double money;
     private boolean isToShop;
     private Map<String, Integer> sizes;
-    private List<Wear> wardrobe = new ArrayList<>();
+    private List<Product> wardrobe = new ArrayList<>();
 
     private Buyer(Map<String, Integer> sizes, double money) {
         this.sizes = sizes;
@@ -33,31 +34,18 @@ public class Buyer implements WearSelectable, Buyable {
     }
 
     @Override
-    public boolean selectPants(Wear pants) {
-        boolean selected = pants.getProductCost() < 150;
-        if (selected) {
-            LOGGER.debug("Pants is selected");
-            this.wardrobe.add(pants);
+    public boolean selectProduct(Product product) {
+        boolean selected = false;
+        if (product.getProductName() == ProductTypes.PANTS) {
+            selected = product.getProductCost() < 150;
+        } else if (product.getProductName() == ProductTypes.OUTERWEAR) {
+            selected = product.getProductCost() < 300;
+        } else if (product.getProductName() == ProductTypes.SHIRT) {
+            selected = product.getProductCost() < 100;
         }
-        return selected;
-    }
-
-    @Override
-    public boolean selectOuterwear(Wear outerwear) {
-        boolean selected = outerwear.getProductCost() < 300;
         if (selected) {
-            LOGGER.debug("Outerwear is selected");
-            this.wardrobe.add(outerwear);
-        }
-        return selected;
-    }
-
-    @Override
-    public boolean selectShirt(Wear shirt) {
-        boolean selected = shirt.getProductCost() < 100;
-        if (selected) {
-            LOGGER.debug("Shirt is selected");
-            this.wardrobe.add(shirt);
+            LOGGER.debug(product.getProductName().getDescription() + " was added.");
+            this.wardrobe.add(product);
         }
         return selected;
     }
@@ -137,11 +125,11 @@ public class Buyer implements WearSelectable, Buyable {
         this.money = this.money + money;
     }
 
-    public List<Wear> getWardrobe() {
+    public List<Product> getWardrobe() {
         return wardrobe;
     }
 
-    public void setWardrobe(List<Wear> wardrobe) {
+    public void setWardrobe(List<Product> wardrobe) {
         this.wardrobe = wardrobe;
     }
 }

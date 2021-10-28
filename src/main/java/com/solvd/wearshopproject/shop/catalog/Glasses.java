@@ -7,7 +7,7 @@ public class Glasses extends Product implements TryableOn {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public Glasses(String productName) {
+    public Glasses(ProductTypes productName) {
         super(productName);
     }
 
