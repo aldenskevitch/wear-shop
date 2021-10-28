@@ -6,7 +6,7 @@
 
     <groupId>com.solvd</groupId>
     <artifactId>ta-course-solvd</artifactId>
-    <version>3.2</version>
+    <version>4.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
