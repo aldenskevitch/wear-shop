@@ -15,20 +15,16 @@ public class ShoppingCart<E extends Position> implements Sellable {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private double totalPrice;
-    private List<Double> prices=new ArrayList<>();
-    private Basket<Wear> wearBasket=new Basket<>();
+    private List<Double> prices = new ArrayList<>();
+    private Basket<Wear> wearBasket = new Basket<>();
 
     public void addWears(List<Wear> wears) {
         wearBasket.setProduct(wears);
-        for (Wear wear : wearBasket.getProduct()) {
-            this.prices.add(wear.getProductCost());
-        }
+        wearBasket.getProduct().forEach(wear -> this.prices.add(wear.getProductCost()));
     }
 
     public void calculatedTotalPrice() {
-        for (Double price : prices) {
-            this.totalPrice += price;
-        }
+        prices.stream().forEach(aDouble -> this.totalPrice += aDouble);
     }
 
     public void printCheck(Shop shop, E employee) {

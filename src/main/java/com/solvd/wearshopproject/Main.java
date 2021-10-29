@@ -1,10 +1,7 @@
 package com.solvd.wearshopproject;
 
 import com.solvd.wearshopproject.shop.*;
-import com.solvd.wearshopproject.shop.catalog.Glasses;
-import com.solvd.wearshopproject.shop.catalog.MenWear;
-import com.solvd.wearshopproject.shop.catalog.ProductType;
-import com.solvd.wearshopproject.shop.catalog.Wear;
+import com.solvd.wearshopproject.shop.catalog.*;
 import com.solvd.wearshopproject.shop.catalog.parameters.Color;
 import com.solvd.wearshopproject.shop.catalog.parameters.Fabric;
 import com.solvd.wearshopproject.shop.catalog.parameters.FabricParameter;
@@ -13,6 +10,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 import static com.solvd.wearshopproject.Buyer.createBuyer;
@@ -87,6 +87,41 @@ public class Main {
 
         shoppingCart.addWears(wears);
         shoppingCart.calculatedTotalPrice();
+
+        LOGGER.debug("REFLECTION START");
+
+        ShopService service;
+        String name;
+
+        try {
+            Class<?> serviceClass = Class.forName("com.solvd.wearshopproject.ShopServiceImpl");
+            service = (ShopServiceImpl) serviceClass.newInstance();
+
+            Field field = service.getClass().getDeclaredField("nameField");
+            field.setAccessible(true);
+            field.set(service, "SERVICE");
+            name = (String) field.get(service);
+            LOGGER.debug(name);
+
+            Method startWorkMethod = serviceClass.getMethod("startWork",Workable.class);
+            Method finishWorkMethod = serviceClass.getMethod("finishWork",Workable.class);
+            Method goToCashierMethod = serviceClass.getMethod("goToCashier",Sellable.class);
+            Method tryOnWearMethod = serviceClass.getMethod("tryOnWear", TryableOn.class);
+            Method getConsultationMethod = serviceClass.getMethod("getConsultation",Consultantable.class);
+
+            startWorkMethod.invoke(service, shop);
+            getConsultationMethod.invoke(service, consultant);
+            tryOnWearMethod.invoke(service, glasses);
+            tryOnWearMethod.invoke(service, pants);
+            tryOnWearMethod.invoke(service, outerwear);
+            tryOnWearMethod.invoke(service, shirt);
+            goToCashierMethod.invoke(service, shoppingCart);
+            finishWorkMethod.invoke(service, shop);
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | NoSuchFieldException | InstantiationException e) {
+            LOGGER.debug(e.getMessage());
+        } finally {
+            LOGGER.debug("REFLECTION END");
+        }
 
         ShopService shopService = new ShopServiceImpl();
         shopService.startWork(shop);
