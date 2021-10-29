@@ -14,6 +14,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 import static com.solvd.wearshopproject.Buyer.createBuyer;
 
@@ -22,6 +24,20 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
+
+        BiFunction<Product, Integer, Double> discount = (pants, percent) -> {
+            pants.setProductCost(pants.getProductCost() / 100 * (100 - percent));
+            return pants.getProductCost();
+        };
+        BiConsumer<Position, Double> salary = (position, money) -> {
+            if (money > 0) {
+                position.increaseSalary(money);
+                LOGGER.debug("Salary increased by: " + money);
+            } else if (money < 0) {
+                position.decreaseSalary(money);
+                LOGGER.debug("Salary decreased by: " + money);
+            }
+        };
 
         Date date = new Date();
         Consultant consultant = new Consultant(800.00);
@@ -103,11 +119,11 @@ public class Main {
             name = (String) field.get(service);
             LOGGER.debug(name);
 
-            Method startWorkMethod = serviceClass.getMethod("startWork",Workable.class);
-            Method finishWorkMethod = serviceClass.getMethod("finishWork",Workable.class);
-            Method goToCashierMethod = serviceClass.getMethod("goToCashier",Sellable.class);
+            Method startWorkMethod = serviceClass.getMethod("startWork", Workable.class);
+            Method finishWorkMethod = serviceClass.getMethod("finishWork", Workable.class);
+            Method goToCashierMethod = serviceClass.getMethod("goToCashier", Sellable.class);
             Method tryOnWearMethod = serviceClass.getMethod("tryOnWear", TryableOn.class);
-            Method getConsultationMethod = serviceClass.getMethod("getConsultation",Consultantable.class);
+            Method getConsultationMethod = serviceClass.getMethod("getConsultation", Consultantable.class);
 
             startWorkMethod.invoke(service, shop);
             getConsultationMethod.invoke(service, consultant);
@@ -141,11 +157,10 @@ public class Main {
             LOGGER.debug("Operation is completed");
         }
         shoppingCart.printCheck(shop, cashier);
-
         Address<Integer> shopAddress2 = new Address<>("Mayakovskogo", 25);
         ControlClass.changeAddress(shop, shopAddress2);
-        ControlClass.salaryChange(cashier, 200);
-        ControlClass.setDiscount(pants, 20);
+        ControlClass.salaryChange(salary, cashier, 200.00);
+        ControlClass.setDiscount(discount, pants, 20);
 
         try {
             buyer.setMoney(-700.00);

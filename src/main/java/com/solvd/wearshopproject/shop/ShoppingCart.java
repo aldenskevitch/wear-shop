@@ -24,7 +24,7 @@ public class ShoppingCart<E extends Position> implements Sellable {
     }
 
     public void calculatedTotalPrice() {
-        prices.stream().forEach(aDouble -> this.totalPrice += aDouble);
+        prices.forEach(aDouble -> this.totalPrice += aDouble);
     }
 
     public void printCheck(Shop shop, E employee) {
@@ -33,11 +33,9 @@ public class ShoppingCart<E extends Position> implements Sellable {
         LOGGER.debug("Seller:" + shop.getDepartment().getEmployee(employee).getName() + shop.getDepartment().getEmployee(employee).getSurname());
         LOGGER.debug("Date: " + LocalDateTime.now().toLocalDate());
         LOGGER.debug("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-        int i = 1;
-        for (Product wear : wearBasket.getProduct()) {
-            LOGGER.debug((i) + ". ......" + wear.getProductCost());
-            i++;
-        }
+
+        wearBasket.getProduct().forEach(wear -> LOGGER.debug(wear.getProductType().getDescription() + " . ......" + wear.getProductCost()));
+
         LOGGER.debug("Total...." + totalPrice + "\n\n\n");
     }
 
