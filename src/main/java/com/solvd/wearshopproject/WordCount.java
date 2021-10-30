@@ -24,8 +24,9 @@ public class WordCount {
     public void calculateWords() throws IOException {
         List<String> list;
         Set<String> set;
-        String data = StringUtils.lowerCase(String.valueOf(FileUtils.readLines(file, Charset.defaultCharset())));
         TreeMap<String, Integer> resultMap = new TreeMap<>();
+        Map<String, Integer> result = new LinkedHashMap<>();
+        String data = StringUtils.lowerCase(String.valueOf(FileUtils.readLines(file, Charset.defaultCharset())));
 
         data = data.replaceAll(",", "");
         data = data.replaceAll("\\.", "");
@@ -42,12 +43,11 @@ public class WordCount {
         set = new TreeSet<>(Arrays.asList(data.split(" ")));
         list = new ArrayList<>(set);
 
-        for (int i = 1; i < list.size(); i++) {
-            LOGGER.debug(list.get(i) + ":" + StringUtils.countMatches(data, list.get(i) + " "));
-            resultMap.put(list.get(i), StringUtils.countMatches(data, list.get(i) + " "));
-        }
-
-        Map<String, Integer> result = new LinkedHashMap<>();
+        String finalData = data;
+        list.forEach(i -> {
+            LOGGER.debug(i + ":" + StringUtils.countMatches(finalData, i + " "));
+            resultMap.put(i, StringUtils.countMatches(finalData, i + " "));
+        });
 
         resultMap.entrySet()
                 .stream()

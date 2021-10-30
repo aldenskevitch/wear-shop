@@ -1,7 +1,6 @@
 package com.solvd.wearshopproject.shop;
 
 import com.solvd.wearshopproject.shop.catalog.Basket;
-import com.solvd.wearshopproject.shop.catalog.Product;
 import com.solvd.wearshopproject.shop.catalog.Wear;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingCart<E extends Position> implements Sellable {
 
@@ -20,11 +20,14 @@ public class ShoppingCart<E extends Position> implements Sellable {
 
     public void addWears(List<Wear> wears) {
         wearBasket.setProduct(wears);
-        wearBasket.getProduct().forEach(wear -> this.prices.add(wear.getProductCost()));
+        this.prices = wearBasket.getProduct().stream()
+                .map(product -> product.getProductCost())
+                .collect(Collectors.toList());
     }
 
     public void calculatedTotalPrice() {
-        prices.forEach(aDouble -> this.totalPrice += aDouble);
+        this.totalPrice = prices.stream()
+                .reduce(0.00, (acc, x) -> acc = x);
     }
 
     public void printCheck(Shop shop, E employee) {
@@ -33,9 +36,7 @@ public class ShoppingCart<E extends Position> implements Sellable {
         LOGGER.debug("Seller:" + shop.getDepartment().getEmployee(employee).getName() + shop.getDepartment().getEmployee(employee).getSurname());
         LOGGER.debug("Date: " + LocalDateTime.now().toLocalDate());
         LOGGER.debug("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-
-        wearBasket.getProduct().forEach(wear -> LOGGER.debug(wear.getProductType().getDescription() + " . ......" + wear.getProductCost()));
-
+        wearBasket.getProduct().forEach(product -> LOGGER.debug(product.getProductType().getDescription() + " . ......" + product.getProductCost()));
         LOGGER.debug("Total...." + totalPrice + "\n\n\n");
     }
 
@@ -43,11 +44,7 @@ public class ShoppingCart<E extends Position> implements Sellable {
     public void printCheck() {
         LOGGER.debug("Date: " + LocalDateTime.now().toLocalDate());
         LOGGER.debug("Time: " + LocalDateTime.now().toLocalTime().withNano(0));
-        int i = 1;
-        for (Product wear : wearBasket.getProduct()) {
-            LOGGER.debug((i) + ". ......" + wear.getProductCost());
-            i++;
-        }
+        wearBasket.getProduct().forEach(product -> LOGGER.debug(product.getProductType().getDescription() + " . ......" + product.getProductCost()));
         LOGGER.debug("Total...." + totalPrice);
     }
 
