@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.solvd.wearshopproject.Buyer.createBuyer;
@@ -38,6 +39,28 @@ public class Main {
                 position.decreaseSalary(money);
                 LOGGER.debug("Salary decreased by: " + money);
             }
+        };
+        Function<String, String> symbolDeleter = (data) -> {
+            data = data.replaceAll(",", "");
+            data = data.replaceAll("\\.", "");
+            data = data.replaceAll(";", "");
+            data = data.replaceAll(":", "");
+            data = data.replaceAll("\\(", "");
+            data = data.replaceAll("\\)", "");
+            data = data.replaceAll("\"", "");
+            data = data.replaceAll("\\[", "");
+            data = data.replaceAll("]", "");
+            data = data.replaceAll(" - ", "");
+            data = data.replaceAll(" &", "");
+            return data;
+        };
+        Function<Map<String, Integer>, Map<String, Integer>> mapSorter = (source) -> {
+            Map<String, Integer> result = new LinkedHashMap<>();
+            source.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByValue(Comparator.naturalOrder()))
+                    .forEach(e -> result.put(e.getKey(), e.getValue()));
+            return result;
         };
 
         Date date = new Date();
@@ -106,15 +129,19 @@ public class Main {
         shoppingCart.addWears(wears);
         shoppingCart.calculatedTotalPrice();
 
-        List<Wear> wearList = Arrays.asList(wears.stream()
+        List<Wear> wearList = null;
+
+        Wear myWear = wears.stream()
                 .filter(wear -> wear.getProductCost() <= 100)
                 .findFirst()
-                .orElseThrow(() -> new NullPointerException()));
+                .orElseThrow(() -> new RuntimeException());
 
-        employees.stream().filter(employee -> employee.getPosition().equals(consultant))
+        employees.stream()
+                .filter(employee -> employee.getPosition().equals(consultant))
                 .forEach(employee -> LOGGER.debug(employee.getName()));
 
-        wearList = wearList.stream().peek(wear -> wear.setProductCost(wear.getProductCost() * 0.5))
+        wearList = wearList.stream()
+                .peek(wear -> wear.setProductCost(wear.getProductCost() * 0.5))
                 .collect(Collectors.toList());
 
         List<Integer> s = wears.stream()
@@ -122,7 +149,8 @@ public class Main {
                 .flatMap(size1 -> size1.getSize().values().stream())
                 .collect(Collectors.toList());
 
-        Wear searchedWear = wearList.stream().filter(wear -> wear.getFabric().equals(Fabric.LEATHER))
+        Wear searchedWear = wearList.stream()
+                .filter(wear -> wear.getFabric().equals(Fabric.LEATHER))
                 .findAny()
                 .orElse(null);
 
@@ -174,8 +202,7 @@ public class Main {
 
         try {
             buyer.buy(shoppingCart);
-        } catch (
-                BuyerLocatedException e) {
+        } catch (BuyerLocatedException e) {
             LOGGER.debug(e.getMessage());
         } finally {
             LOGGER.debug("Operation is completed");
@@ -188,11 +215,9 @@ public class Main {
 
         try {
             buyer.setMoney(-700.00);
-        } catch (
-                BuyerDataException e) {
+        } catch (BuyerDataException e) {
             LOGGER.debug(e.getMessage());
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             LOGGER.debug("Other exception");
         } finally {
             LOGGER.debug("Operation is completed");
@@ -201,9 +226,8 @@ public class Main {
         String filePath = "src/main/resources/article.txt";
         WordCount wordCount = new WordCount(filePath);
         try {
-            wordCount.calculateWords();
-        } catch (
-                IOException e) {
+            wordCount.calculateWords(symbolDeleter,mapSorter);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

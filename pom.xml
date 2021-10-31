@@ -6,7 +6,7 @@
 
     <groupId>com.solvd</groupId>
     <artifactId>wear-shop</artifactId>
-    <version>4.0-SNAPSHOT</version>
+    <version>4.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
