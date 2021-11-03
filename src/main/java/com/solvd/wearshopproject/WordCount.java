@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.function.Function;
 
 public class WordCount {
 
@@ -21,38 +22,20 @@ public class WordCount {
         this.file = FileUtils.getFile(textPath);
     }
 
-    public void calculateWords() throws IOException {
+    public void calculateWords(Function<String, String> data,Function<Map<String, Integer>, Map<String, Integer>> result) throws IOException {
         List<String> list;
         Set<String> set;
-        String data = StringUtils.lowerCase(String.valueOf(FileUtils.readLines(file, Charset.defaultCharset())));
-        TreeMap<String, Integer> resultMap = new TreeMap<>();
+        Map<String, Integer> resultMap = new TreeMap<>();
+        String uncleanData = StringUtils.lowerCase(String.valueOf(FileUtils.readLines(file, Charset.defaultCharset())));
+        String finalData = data.apply(uncleanData);
 
-        data = data.replaceAll(",", "");
-        data = data.replaceAll("\\.", "");
-        data = data.replaceAll(";", "");
-        data = data.replaceAll(":", "");
-        data = data.replaceAll("\\(", "");
-        data = data.replaceAll("\\)", "");
-        data = data.replaceAll("\"", "");
-        data = data.replaceAll("\\[", "");
-        data = data.replaceAll("]", "");
-        data = data.replaceAll(" - ", "");
-        data = data.replaceAll(" &", "");
-
-        set = new TreeSet<>(Arrays.asList(data.split(" ")));
+        set = new TreeSet<>(Arrays.asList(finalData.split(" ")));
         list = new ArrayList<>(set);
 
-        for (int i = 1; i < list.size(); i++) {
-            LOGGER.debug(list.get(i) + ":" + StringUtils.countMatches(data, list.get(i) + " "));
-            resultMap.put(list.get(i), StringUtils.countMatches(data, list.get(i) + " "));
-        }
-
-        Map<String, Integer> result = new LinkedHashMap<>();
-
-        resultMap.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.naturalOrder()))
-                .forEach(e -> result.put(e.getKey(), e.getValue()));
+        list.forEach(i -> {
+            LOGGER.debug(i + ":" + StringUtils.countMatches(finalData, i + " "));
+            resultMap.put(i, StringUtils.countMatches(finalData, i + " "));
+        });
 
         FileUtils.writeLines(resultFile, Collections.singleton(result.toString()));
     }

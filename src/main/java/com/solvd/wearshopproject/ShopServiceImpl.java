@@ -6,6 +6,8 @@ import com.solvd.wearshopproject.shop.catalog.TryableOn;
 
 public class ShopServiceImpl implements ShopService {
 
+    private String nameField;
+
     @Override
     public void startWork(Workable workable) {
         workable.startWork();

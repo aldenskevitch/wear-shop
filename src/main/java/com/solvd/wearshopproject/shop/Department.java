@@ -16,6 +16,11 @@ public class Department {
         this.employees = employees;
     }
 
+    public static double increaseProceeds(double value) {
+        proceeds += value;
+        return proceeds;
+    }
+
     public void addEmployee(Employee employee) {
         this.employees.add(employee);
     }
@@ -24,18 +29,11 @@ public class Department {
         this.positions.add(position);
     }
 
-
-    public static double increaseProceeds(double value) {
-        proceeds += value;
-        return proceeds;
-    }
-
     public Employee getEmployee(Position position) {
-        for (Employee employee : this.employees) {
-            if (employee.getPosition().equals(position))
-                return employee;
-        }
-        return null;
+        return this.employees.stream()
+                .filter(employee -> employee.getPosition().equals(position))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
