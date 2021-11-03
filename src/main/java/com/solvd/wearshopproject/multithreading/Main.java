@@ -10,20 +10,13 @@ public class Main {
         IntStream.range(0, 100)
                 .boxed()
                 .forEach(index -> {
-                    Thread thread = new Thread(() -> {
-                        Connection connection = connectionPool.getConnection();
-                        connection.createConnection();
-                        connection.readData();
-                        connection.updateData();
-                        connection.closeConnection();
-                        connectionPool.releaseConnection(connection);
-                    });
+                    Thread thread = new ThreadClass(connectionPool);
+                    thread.start();
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    thread.start();
-                });
+        });
     }
 }
