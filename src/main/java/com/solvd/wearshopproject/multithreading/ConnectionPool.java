@@ -1,6 +1,7 @@
 package com.solvd.wearshopproject.multithreading;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,7 +17,7 @@ public class ConnectionPool {
         if (instance == null) {
             instance = new ConnectionPool();
         }
-        connectionPool = new ArrayList<>();
+        connectionPool = Collections.synchronizedList(new ArrayList<>());
         IntStream.range(0, pool).forEach(i ->
                 connectionPool.add(new Connection()));
         return instance;
@@ -27,8 +28,7 @@ public class ConnectionPool {
     }
 
     public synchronized Connection getConnection() {
-        Connection connection = connectionPool
+        return connectionPool
                 .remove(connectionPool.size() - 1);
-        return connection;
     }
 }

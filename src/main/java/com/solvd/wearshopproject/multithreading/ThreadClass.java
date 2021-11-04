@@ -1,8 +1,14 @@
 package com.solvd.wearshopproject.multithreading;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 public class ThreadClass extends Thread {
 
-    private ConnectionPool connectionPool;
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    private final ConnectionPool connectionPool;
 
     public ThreadClass(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -11,10 +17,10 @@ public class ThreadClass extends Thread {
     @Override
     public void run() {
         Connection connection = connectionPool.getConnection();
-        connection.createConnection();
-        connection.readData();
-        connection.updateData();
-        connection.closeConnection();
+        LOGGER.debug(String.format("%s by extends Thread", connection.createConnection()));
+        LOGGER.debug(String.format("%s by extends Thread", connection.readData()));
+        LOGGER.debug(String.format("%s by extends Thread", connection.updateData()));
+        LOGGER.debug(String.format("%s by extends Thread", connection.closeConnection()));
         connectionPool.releaseConnection(connection);
     }
 }
