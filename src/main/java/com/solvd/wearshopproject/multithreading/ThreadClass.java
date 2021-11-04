@@ -3,7 +3,6 @@ package com.solvd.wearshopproject.multithreading;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class ThreadClass extends Thread {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -22,5 +21,9 @@ public class ThreadClass extends Thread {
         LOGGER.debug(String.format("%s by extends Thread", connection.updateData()));
         LOGGER.debug(String.format("%s by extends Thread", connection.closeConnection()));
         connectionPool.releaseConnection(connection);
+    }
+
+    public ConnectionPool getConnectionPool() {
+        return connectionPool;
     }
 }

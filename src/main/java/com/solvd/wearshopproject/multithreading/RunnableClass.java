@@ -22,4 +22,8 @@ public class RunnableClass implements Runnable {
         LOGGER.debug(String.format("%s by implements Runnable", connection.closeConnection()));
         connectionPool.releaseConnection(connection);
     }
+
+    public ConnectionPool getConnectionPool() {
+        return connectionPool;
+    }
 }

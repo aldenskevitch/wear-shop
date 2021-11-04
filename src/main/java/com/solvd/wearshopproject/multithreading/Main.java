@@ -11,9 +11,10 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         ConnectionPool connectionPool = ConnectionPool.getInstance(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         IntStream.range(0, 100)
                 .boxed()
@@ -32,8 +33,8 @@ public class Main {
                     sleep(500);
                 });
 
-        ExecutorsClass.start();
-
+        ExecutorsClass.start(executorService);
+        CompletableClass.start(executorService);
     }
 
     public static void sleep(Integer mils) {

@@ -31,4 +31,20 @@ public class ConnectionPool {
         return connectionPool
                 .remove(connectionPool.size() - 1);
     }
+
+    public static ConnectionPool getInstance() {
+        return instance;
+    }
+
+    public static void setInstance(ConnectionPool instance) {
+        ConnectionPool.instance = instance;
+    }
+
+    public static List<Connection> getConnectionPool() {
+        return connectionPool;
+    }
+
+    public static void setConnectionPool(List<Connection> connectionPool) {
+        ConnectionPool.connectionPool = connectionPool;
+    }
 }
