@@ -13,7 +13,7 @@ public class ConnectionPool {
     private ConnectionPool() {
     }
 
-    public static ConnectionPool getInstance(Integer pool) {
+    public static synchronized ConnectionPool getInstance(Integer pool) {
         if (instance == null) {
             instance = new ConnectionPool();
         }
